@@ -808,6 +808,49 @@
         .skill-note a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); transition: opacity .2s; }
         .skill-note a:hover { opacity: .7; }
 
+        /* ---- 游戏常驻入口：导航霓虹药丸 + 右下角悬浮按钮 ---- */
+        .nav-links a.nav-game {
+            color: #7af0ff;
+            background: linear-gradient(135deg, #0b2440, #123a5e);
+            border: 1px solid rgba(0,240,255,.45);
+            border-radius: 999px;
+            font-weight: 700;
+            box-shadow: 0 0 10px rgba(0,240,255,.22);
+        }
+        .nav-links a.nav-game:hover {
+            color: #fff; border-color: #00f0ff;
+            box-shadow: 0 0 18px rgba(0,240,255,.45);
+            background: linear-gradient(135deg, #0d2b4d, #164568);
+        }
+        .game-fab {
+            position: fixed; right: 1.4rem; bottom: 5.9rem; z-index: 960;
+            display: inline-flex; align-items: center; gap: .5rem;
+            padding: .72rem 1.15rem; border-radius: 999px; text-decoration: none;
+            background: linear-gradient(135deg, #0b2440, #123a5e);
+            border: 1.5px solid rgba(0,240,255,.55); color: #9df1ff;
+            font-size: .86rem; font-weight: 700; letter-spacing: .04em;
+            box-shadow: 0 8px 30px rgba(2,12,27,.45), 0 0 20px rgba(0,240,255,.28), inset 0 0 12px rgba(0,240,255,.08);
+            animation: fabFloat 3.2s ease-in-out infinite;
+            transition: transform .25s, box-shadow .25s, border-color .25s, color .25s;
+        }
+        .game-fab .gf-icon { font-size: 1.15rem; filter: drop-shadow(0 0 6px rgba(0,240,255,.8)); }
+        .game-fab .gf-text { text-shadow: 0 0 10px rgba(0,240,255,.5); }
+        .game-fab .gf-ping {
+            position: absolute; inset: -4px; border-radius: 999px;
+            border: 1.5px solid rgba(0,240,255,.5);
+            animation: fabPing 2.4s ease-out infinite; pointer-events: none;
+        }
+        .game-fab:hover {
+            transform: translateY(-3px); color: #fff; border-color: #00f0ff;
+            box-shadow: 0 12px 36px rgba(2,12,27,.5), 0 0 34px rgba(0,240,255,.5), inset 0 0 16px rgba(0,240,255,.15);
+        }
+        @keyframes fabPing { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.32); opacity: 0; } }
+        @keyframes fabFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+        @media (max-width: 640px) {
+            .game-fab { right: .9rem; bottom: 5.4rem; padding: .58rem .9rem; font-size: .78rem; }
+        }
+        @media print { .game-fab { display: none !important; } }
+
         /* ---- 游戏试玩入口（坦克大战 · 赛博霓虹聚光设计） ---- */
         .btn-game { background: linear-gradient(135deg, #0b2440, #123a5e); color: #7af0ff; border: 1px solid rgba(0,240,255,.5); }
         .btn-game:hover { color: #fff; border-color: #00f0ff; box-shadow: 0 0 22px rgba(0,240,255,.4); transform: translateY(-2px); }
@@ -1572,6 +1615,7 @@
                 <a href="#gallery">证书</a>
                 <a href="#interests">爱好</a>
                 <a href="#journey">轨迹</a>
+                <a href="https://juny186.github.io/studious-robot/" target="_blank" rel="noopener" class="nav-game" aria-label="在线试玩坦克大战">🎮 试玩</a>
             </nav>
             <div class="nav-actions">
                 <button class="icon-btn" id="themeToggle" aria-label="切换深浅主题" title="切换深浅主题">
@@ -1584,6 +1628,13 @@
             </div>
         </div>
     </header>
+
+    <!-- 悬浮游戏入口：滚动到任何位置都可见 -->
+    <a class="game-fab" href="https://juny186.github.io/studious-robot/" target="_blank" rel="noopener" aria-label="在线试玩坦克大战">
+        <span class="gf-ping" aria-hidden="true"></span>
+        <span class="gf-icon" aria-hidden="true">🎮</span>
+        <span class="gf-text">试玩坦克大战</span>
+    </a>
 
     <!-- ================= Hero 主视觉 ================= -->
     <section class="hero" id="top">
