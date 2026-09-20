@@ -851,6 +851,14 @@
         }
         @media print { .game-fab { display: none !important; } }
 
+        /* ---- 双创迭代版新增 ---- */
+        .hero-slogan { font-size: 1.02rem; font-weight: 700; color: var(--accent); letter-spacing: .04em; margin-bottom: .5rem; }
+        .skill-group > .model-group + .model-group { margin-top: 1.35rem; }
+        .skill-group-note { font-size: .78rem; color: var(--ink-faint); margin-top: .75rem; }
+        .plan-stage + .plan-stage { margin-top: 1.3rem; padding-top: 1.3rem; border-top: 1px dashed var(--accent-line); }
+        .plan-stage h3 { font-size: 1.02rem; margin-bottom: .55rem; display: flex; align-items: center; gap: .55rem; flex-wrap: wrap; }
+        .stage-chip { font-size: .72rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: .18rem .75rem; }
+
         /* ---- 游戏试玩入口（坦克大战 · 赛博霓虹聚光设计） ---- */
         .btn-game { background: linear-gradient(135deg, #0b2440, #123a5e); color: #7af0ff; border: 1px solid rgba(0,240,255,.5); }
         .btn-game:hover { color: #fff; border-color: #00f0ff; box-shadow: 0 0 22px rgba(0,240,255,.4); transform: translateY(-2px); }
@@ -1610,8 +1618,10 @@
             <nav class="nav-links" aria-label="页面导航">
                 <a href="#about">关于</a>
                 <a href="#education">教育</a>
-                <a href="#skills">技能</a>
-                <a href="#projects">项目</a>
+                <a href="#skills">技能证书</a>
+                <a href="#projects">项目作品</a>
+                <a href="#plan">双创规划</a>
+                <a href="#value">入部价值</a>
                 <a href="#gallery">证书</a>
                 <a href="#interests">爱好</a>
                 <a href="#journey">轨迹</a>
@@ -1646,9 +1656,9 @@
                     <span class="prompt">»</span>
                     <span class="typed" id="typed"></span><span class="caret" aria-hidden="true"></span>
                 </div>
+                <p class="hero-slogan">深耕康养服务赛道，以 AI 技术赋能老年场景创新</p>
                 <p class="hero-desc">
-                        <strong>四川文理学院</strong>养老服务管理专业本科生，<strong>康养 × AI 跨界创新者</strong>。
-                        把前沿智能技术带进传统服务场景——从真实需求出发做创新，用代码验证方案，用设计传达温度。
+                        康养产业学院养老服务管理专业大一学生，自主深耕<strong>前端开发、AI 大模型应用、智能工具开发</strong>，专注「<strong>康养服务 + 数字科技</strong>」跨学科创新，具备独立项目落地、网页搭建、成果排版、路演材料制作能力。目标依托校双创孵化平台，落地康养数字化创新项目，参与各类双创赛事。
                     </p>
                 <div class="hero-cta">
                     <a href="#projects" class="btn btn-primary">
@@ -1775,38 +1785,36 @@
                     </div>
                 </div>
                 <p class="about-lead reveal" style="--d:.06s">
-                    我是就读于<mark>养老服务管理专业</mark>的大一学生，却把课余时间全部投给了
-                    <mark>AI 编程实战</mark>。旁人眼中的"冷门专业 × 前沿技术"在我看来恰是最有趣的交叉地带——
-                    老龄化社会需要温度，智能技术需要落地，而我正站在两者的交汇处学习如何搭建桥梁。
+                    我是康养产业学院大一学生，深耕养老服务专业知识的同时，主动突破学科边界，系统自学<mark>前端开发、AI 智能体应用、项目产品化思维</mark>。区别于纯文科康养学生与纯技术理工科学生，我具备「<mark>懂养老真实场景、懂用户需求、懂技术落地</mark>」的跨学科复合优势。
                 </p>
                 <div class="feature-grid">
                     <div class="feature-item reveal" style="--d:.08s">
                         <div class="f-head">
-                            <span class="f-icon">🌿</span>
-                            <h4>跨界背景</h4>
+                            <span class="f-icon">🚀</span>
+                            <h4>独立项目实践</h4>
                         </div>
-                        <p>养老服务管理 × AI 技术应用，具备将前沿技术落地传统服务场景的独特视角。</p>
+                        <p>入学以来独立完成个人作品集官网、AI 校园智能问答系统、H5 完整游戏项目，熟练掌握成果梳理、网页部署、路演 PPT 设计与材料排版。</p>
                     </div>
                     <div class="feature-item reveal" style="--d:.14s">
                         <div class="f-head">
-                            <span class="f-icon">🏅</span>
-                            <h4>八证在手</h4>
+                            <span class="f-icon">🤝</span>
+                            <h4>入部即输出</h4>
                         </div>
-                        <p>阿里云 Clouder 六项技能认证与达摩院人工智能训练师（初级 / 高级）认证：从大模型应用到智能体训练，技术栈持续扩容。</p>
+                        <p>加入双创部项目孵化中心，不止为学习资源，更为输出价值：可独立承担部门网页制作、项目成果美化、赛事材料整理、路演辅助等工作。</p>
                     </div>
                     <div class="feature-item reveal" style="--d:.2s">
                         <div class="f-head">
-                            <span class="f-icon">🚀</span>
-                            <h4>创新进行时</h4>
+                            <span class="f-icon">🌿</span>
+                            <h4>康养数字化</h4>
                         </div>
-                        <p>正备战 RST 机器人及仿真技术大赛，构思「康养 + 机器人」大创方向；作为新生代表向校长建言跨学院双创平台，让创意接受实战检验。</p>
+                        <p>长期规划聚焦康养数字化，计划落地适老化 AI 工具、老年益智交互产品，让技术真正服务老年场景。</p>
                     </div>
                     <div class="feature-item reveal" style="--d:.26s">
                         <div class="f-head">
-                            <span class="f-icon">🎯</span>
-                            <h4>审美驱动</h4>
+                            <span class="f-icon">🏆</span>
+                            <h4>双创赛事预备</h4>
                         </div>
-                        <p>以摄影与音乐的审美积累反哺视觉表达，让实用内容具备专业叙事质感。</p>
+                        <p>备战大创、「互联网 +」、挑战杯等双创竞赛，目标依托校双创孵化平台，落地康养数字化创新项目。</p>
                     </div>
                 </div>
             </section>
@@ -1858,36 +1866,48 @@
                     </div>
                 </div>
                 <div class="section-card reveal" style="--d:.06s">
-                    <div class="skill-bars">
-                        <div class="skill" data-level="88">
-                            <div class="skill-top"><b>AI 工具应用 · Prompt 工程</b><span>88%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">多模型协作 / 提示词设计 / 工作流编排</p>
+                    <div class="skill-group">
+                        <div class="model-group">
+                            <div class="mg-head"><span class="mg-dot"></span>AI &amp; 数字技术储备 <span class="mg-en">双创核心竞争力</span></div>
+                            <div class="skill-bars">
+                                <div class="skill" data-level="88">
+                                    <div class="skill-top"><b>AI 大模型应用 · Prompt 工程</b><span>88%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">阿里云人工智能训练师系列认证 · 达摩院 AI 应用与大模型 Prompt 工程认证</p>
+                                </div>
+                                <div class="skill" data-level="80">
+                                    <div class="skill-top"><b>智能工具开发 · 工作流编排</b><span>80%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">多模型协作 / 智能体搭建 / API 调用</p>
+                                </div>
+                                <div class="skill" data-level="78">
+                                    <div class="skill-top"><b>前端网页开发 · GitHub 项目部署</b><span>78%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">响应式页面 / 本站即作品 / <a href="https://juny186.github.io/studious-robot/" target="_blank" rel="noopener" aria-label="在线试玩坦克大战">坦克大战 · 空降突袭（在线试玩）</a></p>
+                                </div>
+                            </div>
+                            <p class="skill-group-note">◆ 注解：系统性储备 AI 应用与 Web 开发能力，为康养数字化项目落地提供技术支撑</p>
                         </div>
-                        <div class="skill" data-level="82">
-                            <div class="skill-top"><b>PPT 视觉设计与排版</b><span>82%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">信息可视化 / 版式 / 配色体系</p>
-                        </div>
-                        <div class="skill" data-level="78">
-                            <div class="skill-top"><b>新媒体内容创作</b><span>78%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">选题策划 / 图文排版 / 平台运营</p>
-                        </div>
-                        <div class="skill" data-level="72">
-                            <div class="skill-top"><b>意图识别 · 对话流设计</b><span>72%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">NLP 应用 / 多轮对话 / 场景拆解</p>
-                        </div>
-                        <div class="skill" data-level="72">
-                            <div class="skill-top"><b>Python 应用开发</b><span>72%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">对话流调度 / 多 Agent 工作台 / API 调用</p>
-                        </div>
-                        <div class="skill" data-level="60">
-                            <div class="skill-top"><b>HTML / CSS 前端基础</b><span>60%</span></div>
-                            <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">响应式页面 / 本站即作品 / <a href="https://juny186.github.io/studious-robot/" target="_blank" rel="noopener" aria-label="在线试玩坦克大战">坦克大战 · 空降突袭（在线试玩）</a></p>
+                        <div class="model-group">
+                            <div class="mg-head"><span class="mg-dot"></span>综合实践能力 <span class="mg-en">全流程适配</span></div>
+                            <div class="skill-bars">
+                                <div class="skill" data-level="82">
+                                    <div class="skill-top"><b>商业 PPT 视觉设计 · 双创路演材料排版</b><span>82%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">信息可视化 / 版式构图 / 答辩逻辑梳理</p>
+                                </div>
+                                <div class="skill" data-level="80">
+                                    <div class="skill-top"><b>项目文档梳理 · 成果可视化包装</b><span>80%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">项目申报材料 / 成果归档 / 汇报呈现</p>
+                                </div>
+                                <div class="skill" data-level="75">
+                                    <div class="skill-top"><b>独立产品思维 · 小型 Demo 迭代</b><span>75%</span></div>
+                                    <div class="skill-track"><div class="skill-fill"></div></div>
+                                    <p class="skill-note">需求调研 → 功能设计 → 产品落地完整闭环</p>
+                                </div>
+                            </div>
+                            <p class="skill-group-note">◆ 注解：适配孵化中心日常工作、项目申报、赛事答辩全流程需求</p>
                         </div>
                     </div>
 
@@ -1930,21 +1950,21 @@
                             <div class="project-tag-line">
                                 <span class="chip accent">★ Featured</span>
                                 <span class="chip">2026</span>
-                                <span class="chip">独立设计开发</span>
+                                <span class="chip">独立开发</span>
                             </div>
-                            <h3 class="project-title">AI 校园对话问答系统</h3>
-                            <p class="project-sub">Intent-Based Campus Q&amp;A Dialogue System</p>
+                            <h3 class="project-title">AI 校园智能问答系统</h3>
+                            <p class="project-sub">AI Campus Intelligent Q&amp;A System</p>
                             <p class="project-desc">
-                                基于意图识别框架设计的智能问答对话流，覆盖校园场景 8 个高频问答需求，
-                                让新生提问一次命中、少走弯路，显著提升信息获取效率。
+                                针对新生校园信息获取零散、查询效率低的痛点，基于<strong>大模型 API</strong> 开发轻量化智能问答系统，
+                                实现校园常见问题智能答疑、信息快速检索。
                             </p>
                             <ul class="project-points">
-                                <li><b>意图识别框架：</b>将用户自然语言提问归类映射到 8 类校园高频场景</li>
-                                <li><b>多轮对话设计：</b>为每类意图设计追问与澄清流程，问答更贴近真人</li>
-                                <li><b>Python 实现：</b>以 Python 完成对话流调度与意图匹配核心逻辑</li>
+                                <li><b>项目成果：</b>完成可交互 Demo，支持精准应答校园生活、教务、宿舍、报到等高频问题，逻辑完整、响应稳定</li>
+                                <li><b>个人收获：</b>掌握 AI 大模型落地小型场景的方法，理解「需求调研 — 功能设计 — 产品落地」的完整逻辑</li>
+                                <li><b>双创迭代方向：</b>将现有对话技术迁移康养赛道，迭代为「<b style="color:var(--accent)">老年康养智能咨询助手</b>」，支持养老政策、居家护理、老年生活常识智能解答，可直接作为大创基础项目</li>
                             </ul>
                             <div class="edu-meta" style="margin-top:1.1rem">
-                                <span class="chip">Python</span><span class="chip">意图识别</span><span class="chip">NLP</span><span class="chip">对话流设计</span>
+                                <span class="chip">Python</span><span class="chip">大模型 Prompt 优化</span><span class="chip">前端页面嵌入</span><span class="chip">轻量化部署</span>
                             </div>
                         </div>
                         <div class="shot-card" data-zoom="问答.jpg" role="button" tabindex="0" aria-label="放大查看系统截图">
@@ -1961,23 +1981,21 @@
                     <div class="project-hero">
                         <div>
                             <div class="project-tag-line">
-                                <span class="chip accent">◆ Practice</span>
+                                <span class="chip accent">◆ Delivery</span>
                                 <span class="chip">2026</span>
                                 <span class="chip">持续交付</span>
                             </div>
-                            <h3 class="project-title">路演 PPT 视觉设计</h3>
-                            <p class="project-sub">Pitch Deck &amp; Presentation Design</p>
+                            <h3 class="project-title">全量视觉 PPT 交付项目</h3>
+                            <p class="project-sub">Full-Stack Visual Presentation Delivery</p>
                             <p class="project-desc">
-                                累计独立交付 <b style="color:var(--accent)">20+ 份</b>演示文稿，覆盖项目路演、商业计划书、答辩汇报与社团展示，
-                                专注「讲清逻辑 + 看得舒服」的叙事化呈现。
+                                长期输出高质量<strong>商业级 PPT</strong> 设计，涵盖学业汇报、双创路演、竞赛答辩、个人成果展示等多场景版式，累计交付 <b style="color:var(--accent)">20+ 份</b>。
                             </p>
                             <ul class="project-points">
-                                <li><b>路演叙事设计：</b>把项目亮点提炼成 3-5 页能打动评委的核心叙事</li>
-                                <li><b>信息可视化：</b>复杂数据与流程重组为一眼可读的图表与版式</li>
-                                <li><b>体系化交付：</b>沉淀字体、配色、版式规范，从 0 到成品高效稳定</li>
+                                <li><b>核心能力：</b>版式构图、视觉层级优化、答辩逻辑梳理、双创项目包装美化</li>
+                                <li><b>项目价值：</b>可直接服务双创孵化中心——协助孵化项目路演 PPT 美化、部门活动宣传材料、竞赛申报排版、成果汇总可视化，适配部门所有日常工作需求</li>
                             </ul>
                             <div class="edu-meta" style="margin-top:1.1rem">
-                                <span class="chip">路演设计</span><span class="chip">商业计划书</span><span class="chip">信息可视化</span><span class="chip">答辩演示</span>
+                                <span class="chip">路演设计</span><span class="chip">竞赛答辩</span><span class="chip">项目包装</span><span class="chip">成果可视化</span>
                             </div>
                         </div>
                         <div class="shot-card" data-zoom="ppt-design.jpg" role="button" tabindex="0" aria-label="放大查看设计作品">
@@ -1988,18 +2006,25 @@
                     </div>
                 </div>
 
-                <!-- 游戏试玩聚光横幅：坦克大战（点击圆形按钮直达在线版） -->
+                <!-- 项目三：H5 原生坦克大战游戏（聚光横幅 + 在线试玩入口） -->
                 <div class="game-banner reveal" style="--d:.14s">
                     <div class="gb-info">
-                        <span class="gb-badge"><i></i>PLAYABLE DEMO · 可在线试玩</span>
+                        <span class="gb-badge"><i></i>★ PROJECT 03 · PLAYABLE DEMO · 可在线试玩</span>
                         <h3>坦克大战 <em>· 空降突袭</em></h3>
-                        <p class="gb-sub">TANK BATTLE · AIRBORNE ASSAULT</p>
+                        <p class="gb-sub">H5 NATIVE TANK BATTLE · AIRBORNE ASSAULT</p>
                         <p class="gb-desc">
-                            原生 HTML5 Canvas + 零依赖 ES6 打造的完整游戏：像和平精英一样先跳伞选落点，
-                            再驾驶坦克守卫基地。点击右侧按钮，直接进入战场。
+                            基于原生 HTML5 Canvas 从零开发完整网页游戏，<b style="color:#7af0ff;">无第三方游戏框架</b>：
+                            像和平精英一样先跳伞选落点，再驾驶坦克守卫基地。已线上部署，点击右侧按钮直接进入战场。
                         </p>
                         <div class="gb-chips">
-                            <span>🪂 跳伞空投</span><span>🚀 15 关战役</span><span>👥 双人 PK</span><span>👹 Boss 战</span><span>🕹️ 全键鼠 + 触屏</span>
+                            <span>🪂 跳伞空投</span><span>🚀 15 关战役</span><span>👥 双人 PK</span><span>👹 Boss 战</span><span>🏆 成就体系</span><span>🕹️ 全键鼠 + 触屏</span>
+                        </div>
+                        <p class="gb-desc" style="margin-top:.85rem;font-size:.8rem;line-height:1.7;">
+                            <b style="color:#7af0ff;">个人收获：</b>极强的逻辑编程能力、复杂交互产品落地能力、完整项目调试与迭代思维。<br>
+                            <b style="color:#7af0ff;">双创迭代方向：</b>为适老化简易交互小游戏、老年益智康养网页工具打下前端技术基础，具备独立开发康养趣味数字产品的能力。
+                        </p>
+                        <div class="gb-chips" style="margin-top:.55rem">
+                            <span>原生 JS</span><span>Canvas 绘图</span><span>游戏物理碰撞</span><span>敌人 AI</span><span>交互逻辑设计</span><span>GitHub Pages 部署</span>
                         </div>
                     </div>
                     <div class="gb-action">
@@ -2011,10 +2036,91 @@
                 </div>
             </section>
 
+            <!-- 双创规划 -->
+            <section class="section" id="plan">
+                <div class="section-head reveal">
+                    <span class="section-num">05</span>
+                    <div class="section-heading">
+                        <h2>双创规划</h2>
+                        <p>康养 + AI 个人双创成长规划</p>
+                    </div>
+                </div>
+                <div class="section-card reveal" style="--d:.06s">
+                    <div class="plan-stage">
+                        <h3><span class="stage-chip">短期 · 大一</span>夯实储备 + 融入平台</h3>
+                        <ul class="edu-courses">
+                            <li>入驻项目孵化中心，熟悉大创、「互联网 +」、挑战杯的项目申报流程与孵化机制</li>
+                            <li>完善技术储备，打磨适老化 AI 问答工具初版 Demo</li>
+                            <li>主动承担部门基础工作，积累双创项目服务与协作经验</li>
+                        </ul>
+                    </div>
+                    <div class="plan-stage">
+                        <h3><span class="stage-chip">中期 · 大二</span>项目落地 + 竞赛立项</h3>
+                        <ul class="edu-courses">
+                            <li>组队申报省级 / 校级大学生创新创业训练计划</li>
+                            <li>正式落地「老年康养智能咨询系统 / 老年益智交互工具」核心产品</li>
+                            <li>参与「互联网 +」、挑战杯院级、校级选拔赛，打磨答辩与项目路演能力</li>
+                        </ul>
+                    </div>
+                    <div class="plan-stage">
+                        <h3><span class="stage-chip">长期 · 大三</span>成果固化 + 价值输出</h3>
+                        <ul class="edu-courses">
+                            <li>优化康养数字化产品，完成迭代升级、场景落地、成果结题</li>
+                            <li>沉淀跨学科创新成果，形成可复用的康养数字服务方案</li>
+                            <li>反哺学院双创氛围，带动更多同学参与康养创新项目</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 入部价值 -->
+            <section class="section" id="value">
+                <div class="section-head reveal">
+                    <span class="section-num">06</span>
+                    <div class="section-heading">
+                        <h2>入部价值</h2>
+                        <p>入部可输出 · 岗位核心能力</p>
+                    </div>
+                </div>
+                <p class="about-lead reveal" style="--d:.06s">
+                    作为跨学科新生，我可<mark>直接为项目孵化中心提供稳定落地价值</mark>，无需部门从零培养：
+                </p>
+                <div class="feature-grid">
+                    <div class="feature-item reveal" style="--d:.08s">
+                        <div class="f-head">
+                            <span class="f-icon">🖥️</span>
+                            <h4>技术支撑</h4>
+                        </div>
+                        <p>独立制作部门宣传官网、项目成果展示页、赛事作品可视化网页，可自主部署上线。</p>
+                    </div>
+                    <div class="feature-item reveal" style="--d:.14s">
+                        <div class="f-head">
+                            <span class="f-icon">📑</span>
+                            <h4>材料支撑</h4>
+                        </div>
+                        <p>负责孵化项目路演 PPT 优化、竞赛申报材料排版、项目文档梳理、成果归档整理。</p>
+                    </div>
+                    <div class="feature-item reveal" style="--d:.2s">
+                        <div class="f-head">
+                            <span class="f-icon">💡</span>
+                            <h4>项目助力</h4>
+                        </div>
+                        <p>具备 AI 产品落地思维，可协助部门打磨初创项目的功能设计、场景优化、创新点提炼。</p>
+                    </div>
+                    <div class="feature-item reveal" style="--d:.26s">
+                        <div class="f-head">
+                            <span class="f-icon">⚙️</span>
+                            <h4>执行能力</h4>
+                        </div>
+                        <p>熟悉 GitHub 项目管理、文件归档、成果迭代，适配双创项目孵化全流程工作。</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- 证书作品 -->
             <section class="section" id="gallery">
                 <div class="section-head reveal">
-                    <span class="section-num">05</span>
+                    <span class="section-num">07</span>
                     <div class="section-heading">
                         <h2>证书与作品</h2>
                         <p>Gallery · 点击放大</p>
@@ -2067,7 +2173,7 @@
             <!-- 兴趣爱好 -->
             <section class="section" id="interests">
                 <div class="section-head reveal">
-                    <span class="section-num">06</span>
+                    <span class="section-num">08</span>
                     <div class="section-heading">
                         <h2>兴趣爱好</h2>
                         <p>Interests &amp; Hobbies</p>
@@ -2104,7 +2210,7 @@
             <!-- 探索轨迹 -->
             <section class="section" id="journey">
                 <div class="section-head reveal">
-                    <span class="section-num">07</span>
+                    <span class="section-num">09</span>
                     <div class="section-heading">
                         <h2>AI 探索轨迹</h2>
                         <p>My Journey</p>
@@ -2166,6 +2272,10 @@
                 <span class="chip">📱 响应式设计</span>
                 <span class="chip">🌗 深浅双主题</span>
             </div>
+            <p style="font-size:.8rem;color:var(--ink-soft);margin-top:1.15rem;line-height:1.85;">
+                本网站由本人<b style="color:var(--accent);">独立设计、编码、开发、部署</b>完成；所有内容为个人真实成果，全程自主深耕、持续迭代成长。<br>
+                <b style="letter-spacing:.06em;">立足康养，赋能科技，深耕双创，笃行致远。</b>
+            </p>
         </div>
         <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem;margin-top:1.6rem;padding-top:1.4rem;border-top:1px solid var(--line);">
             <p style="font-size:.78rem;color:var(--ink-faint);">
@@ -2222,13 +2332,12 @@
 
         /* ---------- 2. 打字机（身份轮播） ---------- */
         var roles = [
-            'AI + 编程开发者',
-            '智能体应用构建者',
-            'PPT 视觉设计者',
-            '技能认证 ×8',
+            '康养跨学科创新',
+            'AI 应用开发者',
+            '独立项目落地者',
+            '双创赛事预备者',
             '坦克大战开发者',
-            '大模型智能体应用者',
-            '康养 × AI 创新探索者'
+            '技能认证 ×8'
         ];
         var typedEl = document.getElementById('typed');
         if (prefersReduced) {
