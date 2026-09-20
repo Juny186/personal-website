@@ -805,6 +805,8 @@
             animation: sheen 2.6s ease infinite;
         }
         .skill-note { font-size: 0.74rem; color: var(--ink-faint); margin-top: 0.4rem; }
+        .skill-note a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed var(--accent); transition: opacity .2s; }
+        .skill-note a:hover { opacity: .7; }
 
         .model-groups { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
         .model-group .mg-head {
@@ -1619,6 +1621,10 @@
                     <div><b>PPT 视觉设计者</b><span>Presentation Designer</span></div>
                 </div>
                 <div class="identity-row">
+                    <span class="i-icon">🎮</span>
+                    <div><b>坦克大战游戏作者</b><span>HTML5 Game Developer</span></div>
+                </div>
+                <div class="identity-row">
                     <span class="i-icon">📱</span>
                     <div><b>自媒体创作者</b><span>Content Creator</span></div>
                 </div>
@@ -1756,7 +1762,7 @@
                         <div class="skill" data-level="60">
                             <div class="skill-top"><b>HTML / CSS 前端基础</b><span>60%</span></div>
                             <div class="skill-track"><div class="skill-fill"></div></div>
-                            <p class="skill-note">响应式页面 / 本站即作品</p>
+                            <p class="skill-note">响应式页面 / 本站即作品 / <a href="https://juny186.github.io/studious-robot/" target="_blank" rel="noopener" aria-label="在线试玩坦克大战">坦克大战 · 空降突袭（在线试玩）</a></p>
                         </div>
                     </div>
 
@@ -2073,6 +2079,7 @@
             '智能体应用构建者',
             'PPT 视觉设计者',
             '技能认证 ×8',
+            '坦克大战开发者',
             '大模型智能体应用者',
             '康养 × AI 创新探索者'
         ];
