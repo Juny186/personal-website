@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffb74d">
+<title>合成大表情</title>
+<meta name="description" content="相同的表情撞在一起，越合越大！一个轻松上头的物理合成小游戏。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="hud">
+    <div class="hud-left">
+      <div class="title">合成大表情</div>
+      <div class="subtitle">相同的撞在一起，越合越大</div>
+    </div>
+    <div class="scores">
+      <div class="score-box">
+        <span class="score-label">分数</span>
+        <span class="score-value" id="score">0</span>
+      </div>
+      <div class="score-box best">
+        <span class="score-label">最高分</span>
+        <span class="score-value" id="best">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <canvas id="game"></canvas>
+
+    <div class="next-chip">
+      <span class="next-label">下一个</span>
+      <span class="next-emoji" id="nextEmoji">😴</span>
+    </div>
+
+    <button class="icon-btn sound-btn" id="soundBtn" aria-label="音效开关" title="音效开关">
+      <span id="soundIcon">🔊</span>
+    </button>
+    <button class="icon-btn restart-btn" id="restartBtn" aria-label="重新开始" title="重新开始">
+      <span>🔄</span>
+    </button>
+
+    <div class="overlay" id="overlay">
+      <div class="modal">
+        <div class="modal-emoji">🎉</div>
+        <h2 class="modal-title">游戏结束</h2>
+        <p class="modal-line">本局得分 <b id="finalScore">0</b></p>
+        <p class="modal-line sub">最高分 <b id="finalBest">0</b></p>
+        <button class="primary-btn" id="againBtn">再来一局</button>
+      </div>
+    </div>
+
+    <div class="overlay start" id="startOverlay">
+      <div class="modal">
+        <div class="modal-emoji big">🤩</div>
+        <h2 class="modal-title">合成大表情</h2>
+        <p class="modal-line sub">点击屏幕投放表情<br>两个相同的表情碰到一起<br>就会合成更大的表情</p>
+        <button class="primary-btn" id="startBtn">开始游戏</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <div class="legend" id="legend"></div>
+  </footer>
+</div>
+<script src="matter.min.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
