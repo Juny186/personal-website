@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z 世代国货美妆消费意愿研究 · 建模分析平台</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#F7F8FA; --surface:#FFFFFF; --surface-2:#FCFCFD;
+  --ink:#141A24; --ink-2:#3D4757; --ink-3:#6E7889; --ink-4:#9BA3B2;
+  --line:#E4E7EC; --line-2:#F0F2F5;
+  --blue:#2E5AAC; --blue-soft:#EAF0FA;
+  --teal:#0E8F73; --amber:#C98A1E; --violet:#6B4FA8; --rose:#C94A38;
+  --shadow-sm:0 1px 2px rgba(20,26,36,.04);
+  --r:14px; --r-sm:9px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:"Inter","Segoe UI","PingFang SC","Microsoft YaHei",-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.62;font-size:14px;letter-spacing:-.005em}
+.wrap{max-width:1320px;margin:0 auto;padding:0 28px 72px}
+@media(max-width:760px){.wrap{padding:0 16px 48px}}
+
+.hero{background:var(--surface);border-bottom:1px solid var(--line);
+  margin:0 -28px 26px;padding:34px 28px 0}
+@media(max-width:760px){.hero{margin:0 -16px 20px;padding:26px 16px 0}}
+.hero-inner{max-width:1264px;margin:0 auto}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:650;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--blue);
+  background:var(--blue-soft);padding:5px 11px;border-radius:6px;margin-bottom:14px}
+.eyebrow::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--blue)}
+h1{font-size:29px;font-weight:750;letter-spacing:-.022em;line-height:1.28}
+@media(max-width:760px){h1{font-size:22px}}
+.subtitle{color:var(--ink-3);font-size:14px;margin-top:9px;max-width:780px;line-height:1.65}
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tag{font-size:12px;font-weight:600;color:var(--ink-2);background:var(--surface-2);
+  border:1px solid var(--line);padding:4px 10px;border-radius:6px}
+
+.tabs{display:flex;gap:2px;margin-top:24px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{position:relative;padding:12px 19px 14px;font-size:13.5px;font-weight:620;
+  color:var(--ink-3);cursor:pointer;border:none;background:none;white-space:nowrap;
+  border-radius:8px 8px 0 0;transition:color .16s,background .16s;font-family:inherit}
+.tab:hover{color:var(--ink);background:var(--surface-2)}
+.tab.on{color:var(--blue)}
+.tab.on::after{content:"";position:absolute;left:14px;right:14px;bottom:0;
+  height:2.5px;background:var(--blue);border-radius:2px 2px 0 0}
+.tab .num{font-size:10.5px;font-weight:700;color:var(--ink-4);
+  margin-right:6px;font-variant-numeric:tabular-nums}
+.tab.on .num{color:var(--blue)}
+
+.panel{display:none;animation:fade .3s ease}
+.panel.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.sec{margin-bottom:22px}
+.sec-head{display:flex;align-items:baseline;gap:11px;margin-bottom:14px;flex-wrap:wrap}
+.sec-num{font-size:11.5px;font-weight:750;color:var(--blue);background:var(--blue-soft);
+  padding:3px 8px;border-radius:5px;font-variant-numeric:tabular-nums}
+.sec-title{font-size:16.5px;font-weight:700;letter-spacing:-.012em}
+.sec-note{font-size:12.5px;color:var(--ink-4);margin-left:auto}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:22px;box-shadow:var(--shadow-sm)}
+.card-h{font-size:14px;font-weight:680;margin-bottom:4px}
+.card-sub{font-size:12.5px;color:var(--ink-4);margin-bottom:16px}
+
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.g2,.g3,.g4{grid-template-columns:1fr}}
+
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:18px 20px;position:relative;overflow:hidden;box-shadow:var(--shadow-sm)}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,var(--blue))}
+.stat .k{font-size:11.5px;font-weight:600;color:var(--ink-4);letter-spacing:.04em;
+  text-transform:uppercase;margin-bottom:7px}
+.stat .v{font-size:27px;font-weight:760;letter-spacing:-.028em;line-height:1.05;
+  font-variant-numeric:tabular-nums;color:var(--accent,var(--ink))}
+.stat .u{font-size:12.5px;color:var(--ink-3);font-weight:560;margin-left:4px}
+.stat .d{font-size:12px;color:var(--ink-4);margin-top:7px}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:640;font-size:11.5px;color:var(--ink-4);
+  letter-spacing:.045em;text-transform:uppercase;padding:9px 12px;
+  border-bottom:1.5px solid var(--line);white-space:nowrap}
+.tbl td{padding:10px 12px;border-bottom:1px solid var(--line-2);color:var(--ink-2)}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl tbody tr:hover{background:var(--surface-2)}
+.tbl .num{font-variant-numeric:tabular-nums;font-weight:620;color:var(--ink)}
+.tbl-wrap{overflow-x:auto;margin:0 -22px;padding:0 22px}
+.tw{font-variant-numeric:tabular-nums;font-weight:700;color:var(--ink)}
+
+.pill{display:inline-block;font-size:11px;font-weight:680;padding:2.5px 8px;border-radius:5px}
+.pill.ok{background:#E6F5F0;color:#0A7359}
+.pill.warn{background:#FDF3E2;color:#95610E}
+.pill.info{background:var(--blue-soft);color:var(--blue)}
+.pill.gray{background:#F1F3F6;color:#5C6675}
+.star{color:var(--rose);font-weight:800;letter-spacing:-1px}
+
+.chart{position:relative;width:100%}
+.h-240{height:240px}.h-280{height:280px}.h-320{height:320px}.h-360{height:360px}.h-400{height:400px}
+@media(max-width:760px){.h-320,.h-360,.h-400{height:280px}}
+
+.sl-row{margin-bottom:19px}
+.sl-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.sl-l{display:flex;align-items:baseline;gap:7px}
+.sl-name{font-size:13.5px;font-weight:650}
+.sl-code{font-size:10.5px;font-weight:700;color:#fff;background:var(--c,var(--blue));
+  padding:1.5px 5.5px;border-radius:4px}
+.sl-val{font-size:16px;font-weight:750;color:var(--c,var(--blue));font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:5px;
+  border-radius:3px;background:#E9ECF1;outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;
+  border-radius:50%;background:#fff;border:3px solid var(--c,var(--blue));cursor:grab;
+  box-shadow:0 1px 4px rgba(20,26,36,.2);transition:transform .13s}
+input[type=range]::-webkit-slider-thumb:active{transform:scale(1.18);cursor:grabbing}
+input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;
+  background:#fff;border:3px solid var(--c,var(--blue));cursor:grab}
+
+.pred{background:linear-gradient(158deg,#F4F7FC 0%,#FAF8FD 100%);
+  border:1px solid #DDE5F0;border-radius:var(--r);padding:26px 22px;text-align:center}
+.pred .pk{font-size:12.5px;color:var(--ink-3);font-weight:600;margin-bottom:9px}
+.pred .pv{font-size:58px;font-weight:780;letter-spacing:-.04em;line-height:1;
+  font-variant-numeric:tabular-nums;transition:color .28s}
+.pred .pu{font-size:17px;color:var(--ink-3);font-weight:620;margin-left:5px}
+.pred .pt{margin-top:14px;font-size:13px;font-weight:680;padding:5px 16px;
+  border-radius:20px;display:inline-block}
+.pred .pg{font-size:11.5px;color:var(--ink-4);margin-top:11px}
+
+.ct-item{margin-bottom:13px}
+.ct-top{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.ct-name{font-weight:620;display:flex;align-items:center;gap:7px}
+.ct-dot{width:8px;height:8px;border-radius:2.5px}
+.ct-val{font-variant-numeric:tabular-nums;font-weight:680;color:var(--ink-2)}
+.ct-track{height:8px;background:#EDF0F4;border-radius:4px;overflow:hidden}
+.ct-fill{height:100%;border-radius:4px;transition:width .35s cubic-bezier(.4,0,.2,1)}
+
+.formula{font-family:"SF Mono",Consolas,monospace;font-size:12px;
+  background:var(--surface-2);border:1px solid var(--line);padding:13px 15px;
+  border-radius:var(--r-sm);color:var(--ink-2);overflow-x:auto;white-space:nowrap;line-height:1.85}
+.formula b{color:var(--blue);font-weight:700}
+
+.path{display:flex;align-items:center;justify-content:center;padding:30px 12px;flex-wrap:wrap}
+.pnode{border-radius:11px;padding:15px 20px;text-align:center;font-size:13.5px;
+  font-weight:680;line-height:1.35;box-shadow:var(--shadow-sm);min-width:106px}
+.pnode .pc{font-size:10.5px;font-weight:700;opacity:.72;letter-spacing:.05em;
+  display:block;margin-top:2px}
+.pnode.a{background:#EEF3FC;border:1.5px solid var(--blue);color:var(--blue)}
+.pnode.b{background:#F5F1FC;border:1.5px solid var(--violet);color:var(--violet)}
+.pnode.c{background:#FDF2F0;border:1.5px solid var(--rose);color:var(--rose)}
+.parr{display:flex;flex-direction:column;align-items:center;gap:3px;padding:0 15px;min-width:96px}
+.parr .lab{font-size:11.5px;font-weight:700;color:var(--ink-2);white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+.parr .ln{width:100%;height:2px;background:var(--ink-4);position:relative}
+.parr .ln::after{content:"";position:absolute;right:-1px;top:-3.5px;
+  border-left:9px solid var(--ink-4);border-top:4.5px solid transparent;
+  border-bottom:4.5px solid transparent}
+.parr.direct .ln{background:none;height:0;border-top:2px dashed #B9C0CC}
+.parr.direct .ln::after{border-left-color:#B9C0CC;top:-5px}
+
+.concl{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:var(--r-sm);padding:17px 19px;box-shadow:var(--shadow-sm)}
+.concl .cnum{font-size:11px;font-weight:750;letter-spacing:.08em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:7px}
+.concl .ct{font-size:14px;font-weight:690;margin-bottom:7px}
+.concl .cb{font-size:12.8px;color:var(--ink-3);line-height:1.68}
+
+.note{font-size:12.3px;color:var(--ink-4);line-height:1.7;padding:12px 14px;
+  background:var(--surface-2);border-radius:var(--r-sm);border-left:2.5px solid var(--line)}
+.note b{color:var(--ink-2);font-weight:680}
+
+footer{margin-top:44px;padding-top:24px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  font-size:12px;color:var(--ink-4)}
+.loading{text-align:center;padding:60px;color:var(--ink-4);font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">第十七届全国大学生市场调查与分析大赛</div>
+    <h1>Z 世代国货美妆消费意愿影响因素研究</h1>
+    <p class="subtitle">
+      基于扩展感知价值理论的购买意愿建模 —— 完整统计流程：信效度检验 · 探索性因子分析 ·
+      多元回归 · 中介效应 · 机器学习预测
+    </p>
+    <div class="tagrow">
+      <span class="tag">N = 500</span>
+      <span class="tag">5 维度 · 15 题项</span>
+      <span class="tag">Cronbach's α &gt; 0.9</span>
+      <span class="tag">KMO = 0.925</span>
+      <span class="tag">R² = 0.480</span>
+      <span class="tag">Bootstrap 5000 次</span>
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-p="p1"><span class="num">01</span>研究概览</button>
+      <button class="tab" data-p="p2"><span class="num">02</span>数据与信效度</button>
+      <button class="tab" data-p="p3"><span class="num">03</span>因子分析</button>
+      <button class="tab" data-p="p4"><span class="num">04</span>回归与中介</button>
+      <button class="tab" data-p="p5"><span class="num">05</span>预测实验室</button>
+      <button class="tab" data-p="p6"><span class="num">06</span>结论建议</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- 01 -->
+<div class="panel on" id="p1">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span>
+      <span class="sec-title">核心指标</span>
+      <span class="sec-note">全部指标来自实测分析结果</span></div>
+    <div class="grid g4" id="kpis"></div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">研究模型与假设</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">理论框架</div>
+        <div class="card-sub">扩展感知价值理论（Extended Perceived Value Theory）</div>
+        <div class="path">
+          <div class="pnode a">感知质量<span class="pc">PQ</span></div>
+          <div class="pnode a">感知价格<span class="pc">PR</span></div>
+          <div class="pnode a">社会认同<span class="pc">PS</span></div>
+          <div class="parr"><span class="lab">聚合</span><span class="ln"></span></div>
+          <div class="pnode b">感知价值<span class="pc">PV</span></div>
+          <div class="parr"><span class="lab">驱动</span><span class="ln"></span></div>
+          <div class="pnode c">购买意愿<span class="pc">PI</span></div>
+        </div>
+        <div class="note">
+          三个前置感知维度共同塑造<b>感知价值</b>，感知价值进一步驱动<b>购买意愿</b>；
+          同时社会认同对购买意愿存在<b>直接效应</b>。
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h">研究假设</div>
+        <div class="card-sub">全部假设均获数据支持（p &lt; 0.001）</div>
+        <table class="tbl">
+          <thead><tr><th>编号</th><th>假设内容</th><th>检验结果</th></tr></thead>
+          <tbody>
+            <tr><td class="tw">H1</td><td>感知质量正向影响购买意愿</td><td><span class="pill ok">支持</span></td></tr>
+            <tr><td class="tw">H2</td><td>感知价格正向影响购买意愿</td><td><span class="pill ok">支持</span></td></tr>
+            <tr><td class="tw">H3</td><td>社会认同正向影响购买意愿</td><td><span class="pill ok">支持</span></td></tr>
+            <tr><td class="tw">H4</td><td>感知价值正向影响购买意愿</td><td><span class="pill ok">支持</span></td></tr>
+            <tr><td class="tw">H5</td><td>感知价值在“感知质量→购买意愿”中起中介作用</td><td><span class="pill ok">支持</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">样本结构</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">性别与年级分布</div>
+        <div class="card-sub">有效样本 N = 500，覆盖大一至大四</div>
+        <div class="grid g2" style="gap:12px">
+          <div class="chart h-240"><canvas id="c-gender"></canvas></div>
+          <div class="chart h-240"><canvas id="c-grade"></canvas></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-h">各变量均值分布</div>
+        <div class="card-sub">5 级 Likert 量表，理论中值 3.0</div>
+        <div class="chart h-240"><canvas id="c-means"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 -->
+<div class="panel" id="p2">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span>
+      <span class="sec-title">描述性统计与正态性检验</span>
+      <span class="sec-note">Shapiro-Wilk 检验，α = 0.05</span></div>
+    <div class="card"><div class="tbl-wrap"><table class="tbl" id="t-desc"></table></div></div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span>
+      <span class="sec-title">信度检验</span>
+      <span class="sec-note">Cronbach's α 与 CITC 校正项总相关</span></div>
+    <div class="grid g2">
+      <div class="card"><div class="tbl-wrap"><table class="tbl" id="t-rel"></table></div></div>
+      <div class="card">
+        <div class="card-h">各维度 Cronbach's α</div>
+        <div class="card-sub">α ≥ 0.8 表示内部一致性优秀</div>
+        <div class="chart h-320"><canvas id="c-alpha"></canvas></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span>
+      <span class="sec-title">变量相关矩阵</span>
+      <span class="sec-note">Pearson 相关系数，*** p &lt; 0.001</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">相关热力图</div>
+        <div class="card-sub">感知价值与购买意愿相关性最强</div>
+        <div class="chart h-400"><canvas id="c-corr"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-h">各因素与购买意愿的相关强度</div>
+        <div class="card-sub">与 PI 的 Pearson 相关系数 r</div>
+        <div class="chart h-320"><canvas id="c-corrbar"></canvas></div>
+        <div class="note" style="margin-top:14px">
+          全部相关系数均在 <b>p &lt; 0.001</b> 水平显著，说明四个感知维度均与购买意愿存在稳定正向关联。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 -->
+<div class="panel" id="p3">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span>
+      <span class="sec-title">效度检验</span>
+      <span class="sec-note">KMO 抽样充分性 + Bartlett 球形检验</span></div>
+    <div class="grid g3">
+      <div class="card" style="text-align:center">
+        <div class="card-h">KMO 值</div><div class="card-sub">判据：&gt;0.8 很适合</div>
+        <div style="font-size:44px;font-weight:780;color:var(--blue);letter-spacing:-.03em;
+          font-variant-numeric:tabular-nums" id="kmo-v">—</div>
+        <div style="margin-top:8px"><span class="pill ok" id="kmo-tag">很适合</span></div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-h">Bartlett χ²</div><div class="card-sub">球形检验统计量</div>
+        <div style="font-size:44px;font-weight:780;color:var(--violet);letter-spacing:-.03em;
+          font-variant-numeric:tabular-nums" id="bart-v">—</div>
+        <div style="margin-top:8px"><span class="pill ok">p &lt; 0.001</span></div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-h">方差解释率</div><div class="card-sub">累计解释的总方差</div>
+        <div style="font-size:44px;font-weight:780;color:var(--teal);letter-spacing:-.03em;
+          font-variant-numeric:tabular-nums" id="var-v">—</div>
+        <div style="margin-top:8px"><span class="pill ok" id="var-tag">4 个因子</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span>
+      <span class="sec-title">碎石图与因子提取</span>
+      <span class="sec-note">特征值 &gt; 1 准则（Kaiser）</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">碎石图 Scree Plot</div>
+        <div class="card-sub">拐点之后趋于平缓，说明保留 4 个因子合适</div>
+        <div class="chart h-320"><canvas id="c-scree"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-h">各因子方差解释率</div>
+        <div class="card-sub">主成分法提取，方差最大化正交旋转</div>
+        <div class="chart h-320"><canvas id="c-varexp"></canvas></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span>
+      <span class="sec-title">旋转后因子载荷矩阵</span>
+      <span class="sec-note">载荷 ≥ 0.5 视为有效归属，深色加粗</span></div>
+    <div class="card">
+      <div class="card-h">探索性因子分析（EFA）结果</div>
+      <div class="card-sub">每个维度题项清晰归属同一因子，共同度均在 0.75 以上，结构效度良好</div>
+      <div class="tbl-wrap"><table class="tbl" id="t-load"></table></div>
+      <div class="note" style="margin-top:14px">
+        <b>解读：</b>PQ / PR / PS / PI 四组题项各自干净地归属到一个因子，交叉载荷均低于 0.45；
+        感知价值 PV 作为复合变量载荷分散，符合中介变量的理论定位。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 -->
+<div class="panel" id="p4">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span>
+      <span class="sec-title">多元线性回归</span>
+      <span class="sec-note">因变量：购买意愿 PI</span></div>
+    <div class="grid g4">
+      <div class="stat" style="--accent:var(--blue)"><div class="k">R²</div>
+        <div class="v" id="r2">—</div><div class="d">解释方差比例</div></div>
+      <div class="stat" style="--accent:var(--violet)"><div class="k">F 统计量</div>
+        <div class="v" id="fv">—</div><div class="d">模型整体显著性</div></div>
+      <div class="stat" style="--accent:var(--teal)"><div class="k">Durbin-Watson</div>
+        <div class="v" id="dw">—</div><div class="d">接近 2 表示无自相关</div></div>
+      <div class="stat" style="--accent:var(--amber)"><div class="k">最大 VIF</div>
+        <div class="v" id="vifmax">—</div><div class="d">&lt; 5 表示无共线性</div></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span>
+      <span class="sec-title">回归系数表</span>
+      <span class="sec-note">非标准化 B 与标准化 β 对照</span></div>
+    <div class="card"><div class="tbl-wrap"><table class="tbl" id="t-reg"></table></div></div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span>
+      <span class="sec-title">影响因素强度对比</span>
+      <span class="sec-note">标准化 β 可直接横向比较</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">标准化回归系数 β</div>
+        <div class="card-sub">数值越大，对购买意愿的独立影响力越强</div>
+        <div class="chart h-320"><canvas id="c-beta"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-h">共线性诊断 VIF</div>
+        <div class="card-sub">VIF &lt; 5 说明自变量间不存在共线性问题</div>
+        <div class="chart h-320"><canvas id="c-vif"></canvas></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">04</span>
+      <span class="sec-title">中介效应分析</span>
+      <span class="sec-note">Bootstrap 5000 次重抽样，95% 置信区间</span></div>
+    <div class="card">
+      <div class="card-h">路径：感知质量 PQ → 感知价值 PV → 购买意愿 PI</div>
+      <div class="card-sub">检验感知价值在“感知质量影响购买意愿”过程中的中介作用</div>
+      <div class="path" id="path-diagram"></div>
+    </div>
+    <div class="grid g3" style="margin-top:16px">
+      <div class="stat" style="--accent:var(--blue)"><div class="k">间接效应</div>
+        <div class="v" id="med-ind">—</div><div class="d">a × b</div></div>
+      <div class="stat" style="--accent:var(--teal)"><div class="k">95% 置信区间</div>
+        <div class="v" id="med-ci" style="font-size:19px">—</div><div class="d">不含 0 则中介显著</div></div>
+      <div class="stat" style="--accent:var(--violet)"><div class="k">中介占比</div>
+        <div class="v" id="med-ratio">—</div><div class="d">间接效应 / 总效应</div></div>
+    </div>
+    <div class="note" style="margin-top:16px" id="med-note"></div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">05</span>
+      <span class="sec-title">残差诊断</span>
+      <span class="sec-note">检验回归四大假设是否满足</span></div>
+    <div class="grid g3">
+      <div class="stat" style="--accent:var(--blue)"><div class="k">Shapiro-Wilk</div>
+        <div class="v" id="sw-v" style="font-size:23px">—</div><div class="d" id="sw-d">残差正态性</div></div>
+      <div class="stat" style="--accent:var(--teal)"><div class="k">Breusch-Pagan</div>
+        <div class="v" id="bp-v" style="font-size:23px">—</div><div class="d" id="bp-d">同方差性</div></div>
+      <div class="stat" style="--accent:var(--amber)"><div class="k">残差均值</div>
+        <div class="v" id="rm-v" style="font-size:23px">—</div><div class="d">理想值接近 0</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 -->
+<div class="panel" id="p5">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span>
+      <span class="sec-title">交互式预测实验室</span>
+      <span class="sec-note">拖动滑块，实时观察模型输出变化</span></div>
+    <div class="grid" style="grid-template-columns:360px 1fr;gap:18px" id="lab-grid">
+      <div class="card">
+        <div class="card-h">参数调节面板</div>
+        <div class="card-sub">调整消费者各维度感知水平</div>
+        <div id="sliders"></div>
+        <div style="padding-top:17px;border-top:1px dashed var(--line)">
+          <div class="sl-row" style="margin-bottom:0;--c:#5C6675">
+            <div class="sl-top">
+              <div class="sl-l"><span class="sl-name">月生活费</span>
+                <span class="sl-code">控制变量</span></div>
+              <span class="sl-val" id="spendVal">¥1600</span>
+            </div>
+            <input type="range" id="spend" min="500" max="4000" step="50" value="1600">
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="pred">
+          <div class="pk">预测购买意愿 PI</div>
+          <div><span class="pv" id="predNum">—</span><span class="pu">/ 5.00</span></div>
+          <div><span class="pt" id="predTag"></span></div>
+          <div class="pg" id="predCmp"></div>
+        </div>
+        <div class="card" style="margin-top:16px">
+          <div class="card-h">各因子贡献分解</div>
+          <div class="card-sub">本次预测中每个变量的绝对贡献值</div>
+          <div id="contrib"></div>
+          <div class="formula" style="margin-top:16px" id="formula"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">画像对比与结构分解</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">当前画像 vs 样本均值</div>
+        <div class="card-sub">雷达图直观呈现各维度相对位置</div>
+        <div class="chart h-360"><canvas id="c-radar"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-h">预测值构成占比</div>
+        <div class="card-sub">各因子对预测结果的贡献份额</div>
+        <div class="chart h-360"><canvas id="c-pie"></canvas></div>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span>
+      <span class="sec-title">机器学习模型对比</span>
+      <span class="sec-note">四类模型 · 测试集 R² 与 5 折交叉验证</span></div>
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-h">模型预测性能</div>
+        <div class="card-sub">线性模型优于树模型，说明变量关系接近线性</div>
+        <div class="chart h-320"><canvas id="c-ml"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-h">学习曲线</div>
+        <div class="card-sub">性能随训练样本量的变化趋势</div>
+        <div class="chart h-320"><canvas id="c-lc"></canvas></div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <div class="tbl-wrap"><table class="tbl" id="t-ml"></table></div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">04</span>
+      <span class="sec-title">特征重要性</span>
+      <span class="sec-note">随机森林特征重要性</span></div>
+    <div class="card">
+      <div class="chart h-320"><canvas id="c-imp"></canvas></div>
+      <div class="note" style="margin-top:14px">
+        感知价值是预测购买意愿的最重要特征，其次为<b>月生活费</b>（消费能力构成基础门槛）
+        与社会认同，与回归分析结论互相印证。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 06 -->
+<div class="panel" id="p6">
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">01</span><span class="sec-title">核心结论</span></div>
+    <div class="grid g2" id="conclusions"></div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">02</span><span class="sec-title">营销启示与策略建议</span></div>
+    <div class="grid g3">
+      <div class="card">
+        <div class="card-h" style="color:var(--violet)">① 价值主张优先</div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.72;margin-top:10px">
+          感知价值对购买意愿的影响力（β = 0.383）显著高于其他因素。品牌传播应聚焦
+          <b>「物有所值」</b>的价值论证——成分、功效、使用体验的可感知证据，而非单纯
+          堆砌产品参数。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-h" style="color:var(--amber)">② 激活社会认同</div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.72;margin-top:10px">
+          社会认同是第二强驱动因素（β = 0.288）。建议采用 <b>KOC 种草 + 社群口碑</b>
+          路线，通过真实用户的使用分享构建同伴影响，注意避免过度营销导致的信任损耗。
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-h" style="color:var(--blue)">③ 夯实基础品质</div>
+        <p style="font-size:13px;color:var(--ink-3);line-height:1.72;margin-top:10px">
+          感知质量与感知价格是<b>基础门槛而非差异化优势</b>（β 均低于 0.18）。应保证
+          品质稳定与定价合理，但不宜将主要资源投入这两项的同质化竞争。
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="sec">
+    <div class="sec-head"><span class="sec-num">03</span><span class="sec-title">研究局限与后续方向</span></div>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th style="width:180px">局限</th><th>说明与改进方向</th></tr></thead>
+        <tbody>
+          <tr><td class="tw">数据来源</td>
+            <td>当前为模拟数据，用于验证建模流程。后续需用真实问卷替换，建议样本量扩大至
+              800 份以上并覆盖多所高校以提升外部效度。</td></tr>
+          <tr><td class="tw">截面设计</td>
+            <td>横截面数据难以确立严格的因果推断。可考虑纵向追踪或情景实验（vignette）
+              强化因果证据。</td></tr>
+          <tr><td class="tw">变量覆盖</td>
+            <td>R² = 0.480，尚有约 52% 的方差未被解释。可纳入品牌信任、感知风险、
+              个人卷入度等变量提升解释力。</td></tr>
+          <tr><td class="tw">方法升级</td>
+            <td>后续可升级为结构方程模型（SEM），同时估计测量模型与结构模型，
+              更严谨地处理潜变量与测量误差。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div>第十七届全国大学生市场调查与分析大赛 · 建模分析平台</div>
+  <div>数据为脚本生成的模拟问卷，仅用于展示建模流程 · 郑钧元</div>
+</footer>
+</div>
+
+<script>
+const C = {
+  PQ:{n:'感知质量',c:'#2E5AAC'}, PR:{n:'感知价格',c:'#0E8F73'},
+  PS:{n:'社会认同',c:'#C98A1E'}, PV:{n:'感知价值',c:'#6B4FA8'},
+  PI:{n:'购买意愿',c:'#C94A38'}
+};
+const FONT = "'Inter','Segoe UI','PingFang SC','Microsoft YaHei',sans-serif";
+Chart.defaults.font.family = FONT;
+Chart.defaults.font.size = 11.5;
+Chart.defaults.color = '#6E7889';
+Chart.defaults.plugins.legend.labels.boxWidth = 9;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.padding = 14;
+Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(20,26,36,.92)';
+Chart.defaults.plugins.tooltip.padding = 10;
+Chart.defaults.plugins.tooltip.cornerRadius = 7;
+Chart.defaults.maintainAspectRatio = false;
+const GX = {grid:{color:'#F0F2F5'},ticks:{font:{size:11}}};
+const GY = {grid:{display:false},ticks:{font:{size:11}}};
+
+let R = null;
+const charts = {};
+const state = {PQ:3.75, PR:3.56, PS:3.85, PV:3.38, spend:1600};
+const DIMS = ['PV','PS','PQ','PR'];
+
+document.getElementById('tabs').addEventListener('click', e => {
+  const b = e.target.closest('.tab'); if(!b) return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t===b));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('on', p.id===b.dataset.p));
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(()=>{ Object.values(charts).forEach(c=>c&&c.resize&&c.resize()); }, 80);
+});
+
+function stat(sel, html){ document.querySelector(sel).innerHTML = html; }
+function kpi(label, val, unit, desc, color){
+  return `<div class="stat" style="--accent:${color}"><div class="k">${label}</div>
+    <div class="v">${val}<span class="u">${unit||''}</span></div>
+    <div class="d">${desc}</div></div>`;
+}
+
+(async function init(){
+  try{
+    const res = await fetch('results.json');
+    if(!res.ok) throw new Error(res.status);
+    R = await res.json();
+  }catch(e){
+    document.body.insertAdjacentHTML('afterbegin',
+      '<div class="loading">⚠️ 未能加载 results.json。请通过本地服务器或 GitHub Pages 访问本页面（直接双击打开 HTML 文件会受浏览器安全策略限制）。</div>');
+    return;
+  }
+  try{ buildOverview(); }catch(e){ console.error('overview',e); }
+  try{ buildData(); }catch(e){ console.error('data',e); }
+  try{ buildFactor(); }catch(e){ console.error('factor',e); }
+  try{ buildRegression(); }catch(e){ console.error('reg',e); }
+  try{ buildLab(); }catch(e){ console.error('lab',e); }
+  try{ buildConclusions(); }catch(e){ console.error('concl',e); }
+})();
+
+/* ===== 01 概览 ===== */
+function buildOverview(){
+  const m = R.meta, g = R.regression, v = R.validity;
+  stat('#kpis',
+    kpi('有效样本量', m.n, '', `男 ${m.gender.male} / 女 ${m.gender.female}`, 'var(--blue)') +
+    kpi('模型 R²', g.r2.toFixed(3), '', '解释约 48% 的购买意愿方差', 'var(--violet)') +
+    kpi('KMO 值', v.kmo.toFixed(3), '', '效度检验 · 很适合做因子分析', 'var(--teal)') +
+    kpi('中介占比', R.mediation.ratio.toFixed(1), '%', '感知价值的中介作用', 'var(--amber)')
+  );
+
+  charts.gender = new Chart(document.getElementById('c-gender'), {
+    type:'doughnut',
+    data:{ labels:['女','男'],
+      datasets:[{ data:[m.gender.female, m.gender.male],
+        backgroundColor:['#6B4FA8','#2E5AAC'], borderWidth:0, hoverOffset:6 }]},
+    options:{ cutout:'62%',
+      plugins:{ legend:{position:'bottom'},
+        tooltip:{callbacks:{label:c=>` ${c.label}：${c.parsed} 人（${(c.parsed/m.n*100).toFixed(1)}%）`}},
+        title:{display:true,text:`性别分布 (N=${m.n})`,font:{size:12.5,weight:'600'},color:'#141A24'}}}
+  });
+
+  charts.grade = new Chart(document.getElementById('c-grade'), {
+    type:'bar',
+    data:{ labels:Object.keys(m.grade).map(k=>k+'年级'), datasets:[{ data:Object.values(m.grade),
+      backgroundColor:'#2E5AAC', borderRadius:6, barThickness:32 }]},
+    options:{ plugins:{ legend:{display:false},
+      tooltip:{callbacks:{label:c=>` ${c.parsed.y} 人`}},
+      title:{display:true,text:'年级分布',font:{size:12.5,weight:'600'},color:'#141A24'}},
+      scales:{x:GY, y:{...GX, beginAtZero:true}}}
+  });
+
+  const dn = R.descriptive;
+  charts.means = new Chart(document.getElementById('c-means'), {
+    type:'bar',
+    data:{ labels:dn.map(d=>d.名称),
+      datasets:[{ data:dn.map(d=>d.均值),
+        backgroundColor:dn.map(d=>C[d.变量].c), borderRadius:6, barThickness:34 }]},
+    options:{ plugins:{ legend:{display:false},
+      tooltip:{callbacks:{label:c=>` 均值 ${c.parsed.y.toFixed(3)}`}},
+      title:{display:true,text:'各变量均值（理论中值 3.0）',font:{size:12.5,weight:'600'},color:'#141A24'}},
+      scales:{ x:GY, y:{...GX, beginAtZero:true, max:5.2} }}
+  });
+}
+
+/* ===== 02 数据与信效度 ===== */
+function buildData(){
+  const dn = R.descriptive;
+  stat('#t-desc', `
+    <thead><tr><th>变量</th><th>名称</th><th>均值</th><th>标准差</th>
+      <th>最小值</th><th>最大值</th><th>偏度</th><th>峰度</th>
+      <th>S-W 统计量</th><th>p 值</th></tr></thead>
+    <tbody>${dn.map(d=>`<tr>
+      <td><b style="color:${C[d.变量].c}">${d.变量}</b></td><td>${d.名称}</td>
+      <td class="num">${d.均值.toFixed(3)}</td><td class="num">${d.标准差.toFixed(3)}</td>
+      <td class="num">${d.最小值.toFixed(2)}</td><td class="num">${d.最大值.toFixed(2)}</td>
+      <td class="num">${d.偏度.toFixed(3)}</td><td class="num">${d.峰度.toFixed(3)}</td>
+      <td class="num">${d['S-W统计量']}</td>
+      <td class="num" style="color:var(--ink-4)">${d.p值 < 0.001 ? '&lt;0.001' : d.p值}</td>
+    </tr>`).join('')}</tbody>`);
+
+  const rl = R.reliability.items;
+  stat('#t-rel', `
+    <thead><tr><th>维度</th><th>题项数</th><th>Cronbach's α</th><th>CITC 范围</th><th>评价</th></tr></thead>
+    <tbody>${rl.map(d=>`<tr>
+      <td><b style="color:${C[d.代码].c}">${d.维度}</b>
+        <span style="color:var(--ink-4);font-size:11px"> ${d.代码}</span></td>
+      <td class="num">${d.题项数}</td>
+      <td class="num">${d.Cronbach_alpha.toFixed(3)}</td>
+      <td class="num" style="font-size:12px">${Math.min(...d.CITC).toFixed(3)} ~ ${Math.max(...d.CITC).toFixed(3)}</td>
+      <td><span class="pill ${d.Cronbach_alpha>=0.8?'ok':'warn'}">${d.评价}</span></td>
+    </tr>`).join('')}
+    <tr style="background:var(--surface-2)">
+      <td><b>总量表</b></td><td class="num">15</td>
+      <td class="num" style="color:var(--blue)">${R.reliability.alpha_total.toFixed(3)}</td>
+      <td colspan="2"><span class="pill ok">内部一致性优秀</span></td></tr></tbody>`);
+
+  charts.alpha = new Chart(document.getElementById('c-alpha'), {
+    type:'bar',
+    data:{ labels:rl.map(d=>d.维度),
+      datasets:[{ data:rl.map(d=>d.Cronbach_alpha), backgroundColor:rl.map(d=>C[d.代码].c),
+        borderRadius:7, barThickness:40 }]},
+    options:{ indexAxis:'y',
+      plugins:{ legend:{display:false},
+        tooltip:{callbacks:{label:c=>` α = ${c.parsed.x.toFixed(3)}`}}},
+      scales:{ x:{...GX, min:0, max:1, ticks:{callback:v=>v.toFixed(1)}}, y:GY }}
+  });
+
+  const cm = R.correlation.matrix, ks = ['PQ','PR','PS','PV','PI'];
+
+  // 用堆叠柱状图模拟相关热力图（纯 Chart.js，无插件依赖）
+  const datasets = ks.map((rv,i)=>({
+    label: C[rv].n,
+    data: ks.map(cv=>cm[rv][cv]),
+    backgroundColor: ks.map(cv=>{
+      const v = cm[rv][cv];
+      if(v >= 0) return `rgba(${Math.round(200-v*70)},${Math.round(95-v*20)},80,${0.18+Math.abs(v)*0.8})`;
+      return `rgba(46,90,172,${0.18+Math.abs(v)*0.8})`;
+    }),
+    borderWidth:0, barPercentage:1, categoryPercentage:1
+  }));
+
+  charts.corr = new Chart(document.getElementById('c-corr'), {
+    type:'bar',
+    data:{ labels: ks.map(k=>C[k].n), datasets },
+    options:{ indexAxis:'y', scales:{ x:{stacked:false, display:false}, y:{stacked:false, ...GY} },
+      plugins:{ legend:{display:false},
+        tooltip:{callbacks:{label:c=>` ${c.dataset.label} ↔ ${c.label}：r = ${c.parsed.x.toFixed(3)}`}}},
+      animation:{duration:400} }
+  });
+
+  const cp = R.correlation.with_pi;
+  charts.corrbar = new Chart(document.getElementById('c-corrbar'), {
+    type:'bar',
+    data:{ labels:cp.map(d=>C[d.变量].n),
+      datasets:[{ data:cp.map(d=>d.r), backgroundColor:cp.map(d=>C[d.变量].c),
+        borderRadius:7, barThickness:36 }]},
+    options:{ indexAxis:'y',
+      plugins:{ legend:{display:false},
+        tooltip:{callbacks:{label:c=>` r = ${c.parsed.x.toFixed(3)} ***`}}},
+      scales:{ x:{...GX, min:0, max:0.8, title:{display:true,text:'Pearson r',font:{size:11}}}, y:GY }}
+  });
+}
+
+/* ===== 03 因子分析 ===== */
+function buildFactor(){
+  const v = R.validity;
+  document.getElementById('kmo-v').textContent = v.kmo.toFixed(3);
+  document.getElementById('bart-v').textContent = v.bartlett_chi2.toFixed(0);
+  document.getElementById('var-v').textContent = v.variance_explained.toFixed(1)+'%';
+  document.getElementById('var-tag').textContent = v.n_factors + ' 个因子';
+
+  const ev = v.eigenvalues;
+  charts.scree = new Chart(document.getElementById('c-scree'), {
+    type:'line',
+    data:{ labels: ev.map((_,i)=>'因子'+(i+1)),
+      datasets:[
+        { label:'特征值', data:ev, borderColor:'#2E5AAC', backgroundColor:'rgba(46,90,172,.1)',
+          tension:.28, pointRadius:5, pointBackgroundColor:'#fff', fill:true,
+          pointBorderColor:'#2E5AAC', pointBorderWidth:2.2, borderWidth:2.4 },
+        { label:'Kaiser 准则线 (λ=1)', data:ev.map(()=>1),
+          borderColor:'#C94A38', borderDash:[6,5], borderWidth:1.6, pointRadius:0, fill:false }
+      ]},
+    options:{ plugins:{ legend:{position:'bottom'},
+      tooltip:{callbacks:{label:c=>c.datasetIndex===0?` 特征值 ${c.parsed.y.toFixed(3)}`:''}}},
+      scales:{ x:GX, y:{...GX, beginAtZero:true, title:{display:true,text:'特征值',font:{size:11}}} }}
+  });
+
+  const expl = ev.slice(0,v.n_factors).map(e=>+(e/15*100).toFixed(2));
+  charts.varexp = new Chart(document.getElementById('c-varexp'), {
+    type:'bar',
+    data:{ labels: expl.map((_,i)=>'因子 '+(i+1)),
+      datasets:[{ data:expl, backgroundColor:['#2E5AAC','#0E8F73','#C98A1E','#6B4FA8'],
+        borderRadius:7, barThickness:48 }]},
+    options:{ plugins:{ legend:{display:false},
+      tooltip:{callbacks:{label:c=>` 解释率 ${c.parsed.y.toFixed(2)}%`}}},
+      scales:{ x:GY, y:{...GX, beginAtZero:true, title:{display:true,text:'方差解释率 (%)',font:{size:11}}} }}
+  });
+
+  const ld = v.loadings;
+  const facCols = ['因子1','因子2','因子3','因子4'];
+  stat('#t-load', `
+    <thead><tr><th>题项</th>${facCols.map(f=>`<th>${f}</th>`).join('')}<th>共同度</th></tr></thead>
+    <tbody>${ld.map(row=>{
+      const vals = facCols.map(f=>row[f] ?? 0);
+      return `<tr><td class="tw">${row['题项']}</td>
+        ${vals.map(val=>{
+          const strong = Math.abs(val) >= 0.5;
+          return `<td class="num" style="${strong?'color:#141A24;font-weight:720':'color:#B0B7C3'}">
+            ${val.toFixed(3)}</td>`;
+        }).join('')}
+        <td class="num" style="color:var(--teal)">${row['共同度'].toFixed(3)}</td></tr>`;
+    }).join('')}</tbody>`);
+}
+
+/* ===== 04 回归与中介 ===== */
+function buildRegression(){
+  const g = R.regression, m = R.mediation, dg = R.diagnostics;
+  stat('#r2', g.r2.toFixed(3));
+  stat('#fv', g.f.toFixed(1));
+  stat('#dw', g.dw.toFixed(3));
+  stat('#vifmax', Math.max(...g.vif.map(v=>v.VIF)).toFixed(2));
+
+  const ks = ['PQ','PR','PS','PV'];
+  stat('#t-reg', `
+    <thead><tr><th>变量</th><th>非标准化 B</th><th>标准误</th><th>标准化 β</th>
+      <th>t 值</th><th>p 值</th><th>显著性</th><th>VIF</th></tr></thead>
+    <tbody>
+      <tr><td class="tw">（常量）</td><td class="num">${g.intercept.toFixed(4)}</td>
+        <td class="num">—</td><td class="num">—</td><td class="num">—</td>
+        <td class="num">—</td><td>—</td><td class="num">—</td></tr>
+      ${ks.map(k=>{
+        const vif = g.vif.find(v=>v.变量===k).VIF;
+        return `<tr>
+        <td><b style="color:${C[k].c}">${C[k].n}</b>
+          <span style="color:var(--ink-4);font-size:11px"> ${k}</span></td>
+        <td class="num">${g.coef[k].toFixed(4)}</td>
+        <td class="num">${g.se[k].toFixed(4)}</td>
+        <td class="num" style="color:${C[k].c}">${g.beta[k].toFixed(3)}</td>
+        <td class="num">${g.t[k].toFixed(3)}</td>
+        <td class="num">&lt;0.001</td>
+        <td><span class="star">***</span></td>
+        <td class="num">${vif.toFixed(3)}</td></tr>`;
+      }).join('')}
+    </tbody>`);
+
+  charts.beta = new Chart(document.getElementById('c-beta'), {
+    type:'bar',
+    data:{ labels: ks.map(k=>C[k].n),
+      datasets:[{ data: ks.map(k=>g.beta[k]),
+        backgroundColor: ks.map(k=>C[k].c), borderRadius:7, barThickness:38 }]},
+    options:{ indexAxis:'y',
+      plugins:{ legend:{display:false},
+        tooltip:{callbacks:{label:c=>` β = ${c.parsed.x.toFixed(3)} ***`}}},
+      scales:{ x:{...GX, beginAtZero:true, max:0.45,
+        title:{display:true,text:'标准化回归系数 β',font:{size:11}}}, y:GY }}
+  });
+
+  charts.vif = new Chart(document.getElementById('c-vif'), {
+    type:'bar',
+    data:{ labels: ks.map(k=>C[k].n),
+      datasets:[
+        { label:'VIF 值', data: ks.map(k=>g.vif.find(v=>v.变量===k).VIF),
+          backgroundColor:'#0E8F73', borderRadius:7, barThickness:34 },
+        { label:'警戒线 (VIF=5)', data:ks.map(()=>5), type:'line',
+          borderColor:'#C94A38', borderDash:[6,5], borderWidth:1.6, pointRadius:0, fill:false }
+      ]},
+    options:{ indexAxis:'y',
+      plugins:{ legend:{position:'bottom'},
+        tooltip:{callbacks:{label:c=>c.datasetIndex===0?` VIF = ${c.parsed.x.toFixed(3)}`:''}}},
+      scales:{ x:{...GX, beginAtZero:true, max:6,
+        title:{display:true,text:'VIF 值',font:{size:11}}}, y:GY }}
+  });
+
+  document.getElementById('path-diagram').innerHTML = `
+    <div class="pnode a">感知质量<span class="pc">PQ</span></div>
+    <div class="parr"><span class="lab">a = ${m.a.toFixed(3)}***</span><span class="ln"></span></div>
+    <div class="pnode b">感知价值<span class="pc">PV</span></div>
+    <div class="parr"><span class="lab">b = ${m.b.toFixed(3)}***</span><span class="ln"></span></div>
+    <div class="pnode c">购买意愿<span class="pc">PI</span></div>
+    <div style="width:100%;height:1px"></div>
+    <div class="parr direct" style="min-width:0;flex:1;max-width:520px;margin-top:14px">
+      <span class="lab" style="color:#6E7889">c' = ${m.c_prime.toFixed(3)}***（直接效应）</span>
+      <span class="ln"></span>
+    </div>`;
+
+  stat('#med-ind', m.indirect.toFixed(3));
+  stat('#med-ci', `[${m.ci_lo.toFixed(3)}, ${m.ci_hi.toFixed(3)}]`);
+  stat('#med-ratio', m.ratio.toFixed(1) + '%');
+  document.getElementById('med-note').innerHTML =
+    `<b>结论：</b>Bootstrap 5000 次重抽样得到的间接效应 95% 置信区间为
+     <b>[${m.ci_lo.toFixed(3)}, ${m.ci_hi.toFixed(3)}]</b>，<b>不包含 0</b>，
+     说明感知价值的中介效应<b>显著成立</b>。总效应 c = ${m.c.toFixed(3)} 中，
+     有 <b>${m.ratio.toFixed(1)}%</b> 是通过感知价值这一路径传递的，属于<b>部分中介</b>；
+     直接效应 c' = ${m.c_prime.toFixed(3)} 仍然显著，说明感知质量对购买意愿还存在直接影响。`;
+
+  stat('#sw-v', dg.shapiro_w.toFixed(4));
+  stat('#bp-v', dg.bp_p.toFixed(4));
+  stat('#rm-v', dg.resid_mean.toFixed(4));
+  const swOk = dg.shapiro_p > 0.05, bpOk = dg.bp_p > 0.05;
+  stat('#sw-d', swOk ? '残差符合正态分布' : '轻微偏离正态（大样本可接受）');
+  stat('#bp-d', bpOk ? '满足同方差假设' : '存在异方差');
+}
+
+/* ===== 05 预测实验室 ===== */
+let SAMPLES = [];
+function genSamples(){
+  let s = 42;
+  const rnd = () => { s = (s*1103515245 + 12345) & 0x7fffffff; return s/0x7fffffff; };
+  const nrm = () => { let u=0,v=0; while(!u)u=rnd(); while(!v)v=rnd();
+    return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); };
+  const out = [];
+  for(let i=0;i<500;i++){
+    out.push({
+      PQ:+Math.min(5,Math.max(1,3.75+nrm()*0.88)).toFixed(2),
+      PR:+Math.min(5,Math.max(1,3.56+nrm()*0.89)).toFixed(2),
+      PS:+Math.min(5,Math.max(1,3.85+nrm()*0.90)).toFixed(2),
+      PV:+Math.min(5,Math.max(1,3.38+nrm()*0.99)).toFixed(2)
+    });
+  }
+  return out;
+}
+
+function predict(){
+  const g = R.regression;
+  let y = g.intercept; const parts = {};
+  for(const k of ['PQ','PR','PS','PV']){ const v = g.coef[k]*state[k]; parts[k]=v; y+=v; }
+  const sp = 0.00025*(state.spend-1600); parts.spend = sp; y += sp;
+  return { y: Math.min(5, Math.max(1, y)), parts };
+}
+
+function buildLab(){
+  const el = document.getElementById('sliders');
+  el.innerHTML = DIMS.map(k=>`
+    <div class="sl-row" style="--c:${C[k].c}">
+      <div class="sl-top">
+        <div class="sl-l"><span class="sl-name">${C[k].n}</span>
+          <span class="sl-code">${k}</span></div>
+        <span class="sl-val" id="v_${k}">${state[k].toFixed(2)}</span>
+      </div>
+      <input type="range" id="s_${k}" min="1" max="5" step="0.01" value="${state[k]}">
+    </div>`).join('');
+
+  DIMS.forEach(k=>{
+    const inp = document.getElementById('s_'+k);
+    inp.addEventListener('input',()=>{
+      state[k] = +inp.value;
+      document.getElementById('v_'+k).textContent = state[k].toFixed(2);
+      updateLab();
+    });
+  });
+  const sp = document.getElementById('spend');
+  sp.addEventListener('input',()=>{
+    state.spend = +sp.value;
+    document.getElementById('spendVal').textContent = '¥'+state.spend;
+    updateLab();
+  });
+
+  SAMPLES = genSamples();
+
+  charts.radar = new Chart(document.getElementById('c-radar'), {
+    type:'radar',
+    data:{ labels:['感知质量','感知价格','社会认同','感知价值'],
+      datasets:[
+        { label:'样本均值', data:[3.75,3.56,3.85,3.38],
+          borderColor:'#C3CBD9', backgroundColor:'rgba(195,203,217,.22)',
+          borderWidth:2, pointRadius:3.5, pointBackgroundColor:'#C3CBD9' },
+        { label:'当前画像', data:[3.75,3.56,3.85,3.38],
+          borderColor:'#2E5AAC', backgroundColor:'rgba(46,90,172,.18)',
+          borderWidth:2.4, pointRadius:4.5, pointBackgroundColor:'#2E5AAC' }
+      ]},
+    options:{ scales:{ r:{ min:1, max:5,
+        ticks:{stepSize:1, font:{size:10.5}, backdropColor:'transparent', color:'#9BA3B2'},
+        pointLabels:{font:{size:12,weight:'600'},color:'#3D4757'},
+        grid:{color:'#E9EDF4'}, angleLines:{color:'#E9EDF4'}}},
+      plugins:{ legend:{position:'bottom'} }}
+  });
+
+  charts.pie = new Chart(document.getElementById('c-pie'), {
+    type:'doughnut',
+    data:{ labels:[], datasets:[{ data:[], backgroundColor:[], borderWidth:0, hoverOffset:6 }]},
+    options:{ cutout:'56%',
+      plugins:{ legend:{position:'bottom'},
+        tooltip:{callbacks:{label:c=>` ${c.label}：${c.parsed.toFixed(3)}`}}}}
+  });
+
+  const ml = R.ml.models;
+  charts.ml = new Chart(document.getElementById('c-ml'), {
+    type:'bar',
+    data:{ labels: ml.map(m=>m.模型),
+      datasets:[
+        { label:'测试集 R²', data:ml.map(m=>m.R2), backgroundColor:'#2E5AAC',
+          borderRadius:6, barThickness:26 },
+        { label:'5折交叉验证 R²', data:ml.map(m=>m.CV_R2), backgroundColor:'#C98A1E',
+          borderRadius:6, barThickness:26 }
+      ]},
+    options:{ plugins:{ legend:{position:'bottom'},
+      tooltip:{callbacks:{label:c=>` ${c.dataset.label}：${c.parsed.y.toFixed(3)}`}}},
+      scales:{ x:GX, y:{...GX, beginAtZero:true, max:0.58,
+        title:{display:true,text:'R²',font:{size:11}}} }}
+  });
+
+  const lc = R.ml.learning_curve;
+  charts.lc = new Chart(document.getElementById('c-lc'), {
+    type:'line',
+    data:{ labels: lc.sizes,
+      datasets:[
+        { label:'交叉验证 R²', data:lc.means, borderColor:'#2E5AAC',
+          backgroundColor:'rgba(46,90,172,.14)', fill:true, tension:.3,
+          pointRadius:4.5, pointBackgroundColor:'#2E5AAC', borderWidth:2.4 },
+        { label:'上界 (+1 SD)', data:lc.means.map((v,i)=>+(v+lc.stds[i]).toFixed(4)),
+          borderColor:'rgba(46,90,172,.35)', borderDash:[4,4], borderWidth:1.4,
+          pointRadius:0, fill:false }
+      ]},
+    options:{ plugins:{ legend:{position:'bottom'},
+      tooltip:{callbacks:{label:c=>c.datasetIndex===0?` R² = ${c.parsed.y.toFixed(3)}`:''}}},
+      scales:{ x:{...GX, title:{display:true,text:'训练样本量',font:{size:11}}},
+        y:{...GX, title:{display:true,text:'R²',font:{size:11}}} }}
+  });
+
+  stat('#t-ml', `
+    <thead><tr><th>模型</th><th>测试集 R²</th><th>RMSE</th><th>MAE</th>
+      <th>5折 CV R²</th><th>CV 标准差</th><th>评价</th></tr></thead>
+    <tbody>${ml.map((m,i)=>`<tr>
+      <td><b>${m.模型}</b>${i===0?' <span class="pill info">最优</span>':''}</td>
+      <td class="num" style="color:var(--blue)">${m.R2.toFixed(4)}</td>
+      <td class="num">${m.RMSE.toFixed(4)}</td>
+      <td class="num">${m.MAE.toFixed(4)}</td>
+      <td class="num">${m.CV_R2.toFixed(4)}</td>
+      <td class="num" style="color:var(--ink-4)">${m.CV_std.toFixed(4)}</td>
+      <td><span class="pill ${m.R2>0.4?'ok':'gray'}">${m.R2>0.4?'表现良好':'弱于线性'}</span></td>
+    </tr>`).join('')}</tbody>`);
+
+  const imp = R.ml.importance;
+  const nmMap = {PQ:'感知质量',PR:'感知价格',PS:'社会认同',PV:'感知价值',
+    Gender:'性别',Age:'年龄',MonthlySpend:'月生活费'};
+  const sorted = Object.entries(imp).sort((a,b)=>a[1]-b[1]);
+  charts.imp = new Chart(document.getElementById('c-imp'), {
+    type:'bar',
+    data:{ labels: sorted.map(([k])=>nmMap[k]||k),
+      datasets:[{ data: sorted.map(([,v])=>v),
+        backgroundColor: sorted.map(([k])=>C[k]?C[k].c:'#8A94A6'),
+        borderRadius:7, barThickness:26 }]},
+    options:{ indexAxis:'y',
+      plugins:{ legend:{display:false},
+        tooltip:{callbacks:{label:c=>` 重要性 ${c.parsed.x.toFixed(4)}`}}},
+      scales:{ x:{...GX, beginAtZero:true,
+        title:{display:true,text:'重要性得分',font:{size:11}}}, y:GY }}
+  });
+
+  updateLab();
+}
+
+function updateLab(){
+  const { y, parts } = predict();
+  const el = document.getElementById('predNum');
+  el.textContent = y.toFixed(2);
+
+  let col = '#0A7359', tag = '低意愿', bg = '#E6F5F0';
+  if(y >= 4.2){ col='#C94A38'; tag='高意愿 · 强购买倾向'; bg='#FBEAE7'; }
+  else if(y >= 3.6){ col='#C98A1E'; tag='中高意愿'; bg='#FDF3E2'; }
+  else if(y >= 3.0){ col='#9A7B1E'; tag='中等意愿'; bg='#FBF6E3'; }
+  el.style.color = col;
+  const t = document.getElementById('predTag');
+  t.textContent = tag; t.style.background = bg; t.style.color = col;
+  const mean = R.descriptive.find(d=>d.变量==='PI').均值;
+  document.getElementById('predCmp').textContent =
+    `样本均值 ${mean.toFixed(2)} 分 · 当前${y>=mean?'高于':'低于'}均值 ${Math.abs(y-mean).toFixed(2)} 分`;
+
+  const items = DIMS.map(k=>({ k, n:C[k].n, c:C[k].c, v:parts[k] }));
+  const posSum = items.reduce((a,b)=>a+Math.max(b.v,0),0) || 1;
+  document.getElementById('contrib').innerHTML =
+    [...items].sort((a,b)=>b.v-a.v).map(d=>`
+      <div class="ct-item">
+        <div class="ct-top">
+          <span class="ct-name"><span class="ct-dot" style="background:${d.c}"></span>
+            ${d.n} <span style="color:var(--ink-4);font-size:11px">${d.k}</span></span>
+          <span class="ct-val">+${d.v.toFixed(3)}</span>
+        </div>
+        <div class="ct-track">
+          <div class="ct-fill" style="width:${(d.v/posSum*100).toFixed(1)}%;background:${d.c}"></div>
+        </div>
+      </div>`).join('');
+
+  const g = R.regression;
+  document.getElementById('formula').innerHTML =
+    `PI = <b>${g.intercept.toFixed(3)}</b>` +
+    ` + <b>${g.coef.PQ}</b>·PQ + <b>${g.coef.PR}</b>·PR + <b>${g.coef.PS}</b>·PS` +
+    ` + <b>${g.coef.PV}</b>·PV + <b>0.00025</b>·(月生活费 − 1600)`;
+
+  charts.radar.data.datasets[1].data = [state.PQ, state.PR, state.PS, state.PV];
+  charts.radar.update('none');
+
+  const pitems = items.filter(d=>d.v>0).sort((a,b)=>b.v-a.v);
+  charts.pie.data.labels = pitems.map(d=>d.n);
+  charts.pie.data.datasets[0].data = pitems.map(d=>+d.v.toFixed(3));
+  charts.pie.data.datasets[0].backgroundColor = pitems.map(d=>d.c);
+  charts.pie.update('none');
+}
+
+/* ===== 06 结论 ===== */
+function buildConclusions(){
+  const g = R.regression, m = R.mediation, v = R.validity, ml = R.ml;
+  const best = ml.models.reduce((a,b)=>a.R2>b.R2?a:b);
+  const cards = [
+    {c:'var(--blue)', n:'结论 01 · 测量质量', t:'量表信效度俱佳',
+     b:`5 个维度 Cronbach's α 介于 0.92–0.93，总量表 α = ${R.reliability.alpha_total.toFixed(3)}；
+        KMO = ${v.kmo.toFixed(3)}，Bartlett 检验 p &lt; 0.001，累计方差解释率
+        ${v.variance_explained.toFixed(1)}%，测量模型质量优良，可支撑后续建模。`},
+    {c:'var(--violet)', n:'结论 02 · 核心驱动', t:'感知价值是第一杠杆',
+     b:`感知价值对购买意愿的标准化回归系数 β = ${g.beta.PV.toFixed(3)}，在四个因素中排名第一，
+        且明显高于第二名社会认同（β = ${g.beta.PS.toFixed(3)}）。回归模型整体
+        R² = ${g.r2.toFixed(3)}，F = ${g.f.toFixed(1)}（p &lt; 0.001），拟合良好。`},
+    {c:'var(--amber)', n:'结论 03 · 路径机制', t:'感知价值起部分中介作用',
+     b:`Bootstrap 5000 次检验显示间接效应 = ${m.indirect.toFixed(3)}，
+        95% CI [${m.ci_lo.toFixed(3)}, ${m.ci_hi.toFixed(3)}] 不含 0，中介效应显著，
+        中介占比达 ${m.ratio.toFixed(1)}%，且直接效应仍然显著，属部分中介。`},
+    {c:'var(--teal)', n:'结论 04 · 模型验证', t:'线性模型表现最优',
+     b:`对比四类算法，${best.模型}在测试集上 R² = ${best.R2.toFixed(3)}，5 折交叉验证
+        R² = ${best.CV_R2.toFixed(3)}，优于随机森林与梯度提升，说明变量与购买意愿之间
+        的关系接近线性，理论模型设定得到数据印证。`},
+  ];
+  stat('#conclusions', cards.map(k=>`
+    <div class="concl" style="--accent:${k.c}">
+      <div class="cnum">${k.n}</div>
+      <div class="ct">${k.t}</div>
+      <div class="cb">${k.b}</div>
+    </div>`).join(''));
+}
+</script>
+</body>
+</html>

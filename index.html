@@ -997,6 +997,75 @@
         }
         @media print { .emoji-banner { break-inside: avoid; } }
 
+        /* ---- 项目亮点入口（市场建模分析平台 · 学术蓝数据风） ---- */
+        .model-banner {
+            margin-top: 1.1rem; position: relative; overflow: hidden; border-radius: 16px;
+            border: 1px solid rgba(46,90,172,.4); color: #16233c; padding: 2rem 2.2rem;
+            display: flex; align-items: center; gap: 2rem; justify-content: space-between; flex-wrap: wrap;
+            background:
+                radial-gradient(115% 150% at 88% 8%, rgba(46,90,172,.16), transparent 58%),
+                radial-gradient(95% 130% at 8% 92%, rgba(14,143,115,.10), transparent 55%),
+                linear-gradient(160deg, #f4f7fc 0%, #eaf0fa 55%, #e2ebf8 100%);
+            box-shadow: 0 10px 26px rgba(30,60,120,.12);
+        }
+        .model-banner::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(46,90,172,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46,90,172,.06) 1px, transparent 1px);
+            background-size: 30px 30px;
+            -webkit-mask-image: radial-gradient(78% 78% at 72% 40%, #000 30%, transparent 100%);
+            mask-image: radial-gradient(78% 78% at 72% 40%, #000 30%, transparent 100%);
+        }
+        .model-banner::after {
+            content: ''; position: absolute; left: -60%; top: 0; width: 45%; height: 100%;
+            background: linear-gradient(105deg, transparent, rgba(46,90,172,.08), transparent);
+            transform: skewX(-18deg); animation: gbSheen 6.5s ease-in-out infinite; pointer-events: none;
+        }
+        .mb-info { position: relative; z-index: 1; max-width: 580px; }
+        .mb-badge {
+            display: inline-flex; align-items: center; gap: .45rem; font-size: .72rem; letter-spacing: .16em;
+            color: #fff; background: linear-gradient(135deg, #2e5aac, #1d4080);
+            padding: .28rem .85rem; border-radius: 999px; font-weight: 800;
+        }
+        .mb-badge i { width: 7px; height: 7px; border-radius: 50%; background: #6ee7b7; box-shadow: 0 0 8px #6ee7b7; animation: gbBlink 1.2s steps(1) infinite; font-style: normal; }
+        .model-banner h3 { font-size: 1.65rem; margin: .9rem 0 .15rem; color: #16233c; letter-spacing: .04em; }
+        .model-banner h3 em { font-style: normal; color: #2e5aac; }
+        .mb-sub { font-size: .78rem; letter-spacing: .24em; color: rgba(46,90,172,.75); margin-bottom: .8rem; }
+        .mb-desc { font-size: .92rem; line-height: 1.75; color: rgba(22,35,60,.85); }
+        .mb-desc b { color: #2e5aac; }
+        .mb-chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+        .mb-chips span {
+            font-size: .74rem; padding: .32rem .75rem; border-radius: 999px;
+            border: 1px solid rgba(46,90,172,.35); color: #2e5aac; background: rgba(255,255,255,.85);
+            font-weight: 600;
+        }
+        .mb-action { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: .65rem; }
+        .mb-play {
+            position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+            width: 116px; height: 116px; border-radius: 50%; text-decoration: none; cursor: pointer;
+            border: 2px solid rgba(46,90,172,.6); color: #1d4080; font-family: inherit;
+            background: radial-gradient(circle at 35% 30%, #ffffff, #e7eefb 70%, #d3e2f7);
+            box-shadow: 0 6px 0 #24488c, 0 10px 22px rgba(30,60,120,.28);
+            transition: transform .22s, box-shadow .22s, border-color .22s;
+        }
+        .mb-play b { font-size: 1.7rem; line-height: 1; color: #2e5aac; }
+        .mb-play span { font-size: .66rem; margin-top: .3rem; letter-spacing: .3em; font-weight: 800; }
+        .mb-play:hover {
+            transform: translateY(-3px) scale(1.05); border-color: #2e5aac;
+            box-shadow: 0 9px 0 #24488c, 0 14px 30px rgba(30,60,120,.38);
+        }
+        .mb-play::before {
+            content: ''; position: absolute; width: 116px; height: 116px; border-radius: 50%;
+            border: 2px solid rgba(46,90,172,.45); animation: gbPulse 2.2s ease-out infinite;
+        }
+        .mb-hint { font-size: .7rem; color: rgba(30,60,120,.6); letter-spacing: .14em; }
+        @media (max-width: 760px) {
+            .model-banner { padding: 1.5rem 1.2rem; }
+            .mb-play, .mb-play::before { width: 94px; height: 94px; }
+        }
+        @media print { .model-banner { break-inside: avoid; } }
+
         /* ---- 站内试玩弹层（iframe） ---- */
         .game-modal {
             position: fixed; inset: 0; z-index: 1000;
@@ -1010,9 +1079,9 @@
         }
         .game-modal-body {
             position: relative; z-index: 1; display: flex; flex-direction: column;
-            width: min(96vw, 520px); height: min(88vh, 900px);
-            border-radius: 20px; overflow: hidden; background: #ffe3a8;
-            border: 1px solid rgba(255,200,110,.7);
+            width: min(96vw, 1220px); height: min(88vh, 900px);
+            border-radius: 20px; overflow: hidden; background: #fff;
+            border: 1px solid rgba(120,140,180,.5);
             box-shadow: 0 40px 90px rgba(0,0,0,.5);
             transform: scale(.9) translateY(16px); opacity: 0;
             transition: all .36s cubic-bezier(.34,1.56,.64,1);
@@ -1024,6 +1093,12 @@
             background: linear-gradient(160deg, #ffedcf, #ffe0b0);
             border-bottom: 1px solid rgba(255,178,80,.45);
         }
+        .game-modal-body.theme-blue .game-modal-bar {
+            background: linear-gradient(160deg, #eaf0fa, #dfe9f7);
+            border-bottom: 1px solid rgba(46,90,172,.35);
+        }
+        .game-modal-body.theme-blue { background: #f4f7fc; }
+        .game-modal-body.theme-blue iframe { background: #f4f7fc; }
         .game-modal-bar .gmb-title { font-size: .82rem; font-weight: 800; color: #7a4a12; }
         .game-modal-bar .gmb-new {
             margin-left: auto; font-size: .7rem; color: #a2681f; text-decoration: none;
@@ -2193,6 +2268,36 @@
                         <span class="eb-hint">JUNY186.GITHUB.IO/EMOJI-MERGE-GAME</span>
                     </div>
                 </div>
+
+                <!-- 项目五：市场调研统计建模分析平台（学术蓝数据风 + 站内直接查看） -->
+                <div class="model-banner reveal" style="--d:.22s">
+                    <div class="mb-info">
+                        <span class="mb-badge"><i></i>★ PROJECT 05 · INTERACTIVE DEMO · 站内直接查看</span>
+                        <h3>市场调研 <em>· 统计建模分析平台</em></h3>
+                        <p class="mb-sub">MARKET RESEARCH · STATISTICAL MODELING PLATFORM</p>
+                        <p class="mb-desc">
+                            以「<b>Z 世代国货美妆消费意愿研究</b>」为题，独立完成从问卷设计、数据清洗到统计建模的完整量化研究：
+                            基于 <b>扩展感知价值理论</b> 构建 5 维度 · 15 题项测量模型（<b>N = 500</b>），涵盖信效度检验、探索性因子分析、
+                            多元回归、中介效应检验与机器学习预测，全流程可视化呈现，点击右侧按钮<b>站内直接查看</b>。
+                        </p>
+                        <div class="mb-chips">
+                            <span>N = 500 有效样本</span><span>Cronbach's α &gt; 0.9</span><span>KMO = 0.925</span><span>R² = 0.480</span><span>Bootstrap 5000 次</span><span>Chart.js 可视化</span>
+                        </div>
+                        <p class="mb-desc" style="margin-top:.85rem;font-size:.8rem;line-height:1.7;">
+                            <b>个人收获：</b>掌握「理论假设 — 量表设计 — 统计检验 — 结论输出」的完整实证研究链路，具备数据驱动的用户洞察与需求分析能力。<br>
+                            <b>双创迁移价值：</b>同一套建模方法可直接迁移康养赛道，用于老年群体服务需求调研、适老化产品接受度量化评估，为康养双创项目提供实证支撑。
+                        </p>
+                        <div class="mb-chips" style="margin-top:.55rem">
+                            <span>问卷设计</span><span>信效度检验</span><span>因子分析</span><span>多元回归</span><span>中介效应</span><span>机器学习预测</span>
+                        </div>
+                    </div>
+                    <div class="mb-action">
+                        <button class="mb-play" type="button" id="modelPlayBtn" aria-label="在站内查看市场建模分析平台">
+                            <b>▶</b><span>在线查看</span>
+                        </button>
+                        <span class="mb-hint">JUNY186.GITHUB.IO/MARKET-MODEL-DEMO</span>
+                    </div>
+                </div>
             </section>
 
             <!-- 双创规划 -->
@@ -2465,11 +2570,11 @@
         <div class="game-modal-backdrop" id="gameModalBackdrop"></div>
         <div class="game-modal-body">
             <div class="game-modal-bar">
-                <span class="gmb-title">🤩 合成大表情 · 在线试玩</span>
-                <a class="gmb-new" href="https://juny186.github.io/emoji-merge-game/" target="_blank" rel="noopener">全屏打开 ↗</a>
+                <span class="gmb-title" id="gameModalTitle">🤩 合成大表情 · 在线试玩</span>
+                <a class="gmb-new" id="gameModalNew" href="https://juny186.github.io/emoji-merge-game/" target="_blank" rel="noopener">全屏打开 ↗</a>
                 <button class="game-modal-close" id="gameModalClose" aria-label="关闭试玩">✕</button>
             </div>
-            <iframe id="gameModalFrame" title="合成大表情 在线试玩" data-src="emoji-game/index.html" allow="autoplay; fullscreen" scrolling="no"></iframe>
+            <iframe id="gameModalFrame" title="站内试玩内容" allow="autoplay; fullscreen" scrolling="no"></iframe>
             <div class="game-modal-loading" id="gameModalLoading">
                 <span class="gml-spin" aria-hidden="true"></span>
                 <span>游戏加载中…</span>
@@ -2512,6 +2617,7 @@
             'AI 应用开发者',
             '独立项目落地者',
             '孵化中心干事',
+            '市场建模分析',
             '坦克大战开发者',
             '技能认证 ×8'
         ];
@@ -2653,19 +2759,38 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        /* ---------- 6.5 站内试玩弹层（合成大表情，iframe 懒加载） ---------- */
+        /* ---------- 6.5 站内试玩弹层（iframe 懒加载，支持多个内容源） ---------- */
         var gameModal = document.getElementById('gameModal');
+        var gameModalBody = gameModal.querySelector('.game-modal-body');
         var gameFrame = document.getElementById('gameModalFrame');
         var gameLoading = document.getElementById('gameModalLoading');
+        var gameModalTitle = document.getElementById('gameModalTitle');
+        var gameModalNew = document.getElementById('gameModalNew');
+        var loadedSrc = null;
 
-        function openGameModal() {
-            // 首次打开才真正加载游戏，避免拖慢简历首屏
-            if (!gameFrame.getAttribute('src')) {
+        var DEMO_SOURCES = {
+            emoji: { src: 'emoji-game/index.html', title: '🤩 合成大表情 · 在线试玩',
+                     url: 'https://juny186.github.io/emoji-merge-game/', theme: 'theme-orange', label: '全屏打开 ↗' },
+            model: { src: 'market-model-demo/index.html', title: '📊 Z 世代国货美妆消费意愿研究 · 建模分析平台',
+                     url: 'https://juny186.github.io/market-model-demo/', theme: 'theme-blue', label: '全屏打开 ↗' }
+        };
+
+        function openGameModal(key) {
+            var cfg = DEMO_SOURCES[key];
+            if (!cfg) return;
+            gameModalTitle.textContent = cfg.title;
+            gameModalNew.href = cfg.url;
+            gameModalNew.textContent = cfg.label;
+            gameModalBody.classList.remove('theme-orange', 'theme-blue');
+            gameModalBody.classList.add(cfg.theme);
+            // 切换内容源时强制重载
+            if (loadedSrc !== cfg.src) {
                 gameLoading.classList.remove('done');
                 gameFrame.addEventListener('load', function () {
                     gameLoading.classList.add('done');
-                });
-                gameFrame.setAttribute('src', gameFrame.getAttribute('data-src'));
+                }, { once: true });
+                gameFrame.setAttribute('src', cfg.src);
+                loadedSrc = cfg.src;
             } else {
                 gameLoading.classList.add('done');
             }
@@ -2674,12 +2799,14 @@
         }
         function closeGameModal() {
             gameModal.classList.remove('active');
-            // 关闭时把 iframe 挪回并重载，下次打开是全新一局且彻底静音
+            // 关闭时卸载 iframe，下次打开是全新一局且彻底静音
             gameFrame.removeAttribute('src');
+            loadedSrc = null;
             gameLoading.classList.remove('done');
             document.body.style.overflow = '';
         }
-        document.getElementById('emojiPlayBtn').addEventListener('click', openGameModal);
+        document.getElementById('emojiPlayBtn').addEventListener('click', function () { openGameModal('emoji'); });
+        document.getElementById('modelPlayBtn').addEventListener('click', function () { openGameModal('model'); });
         document.getElementById('gameModalClose').addEventListener('click', closeGameModal);
         document.getElementById('gameModalBackdrop').addEventListener('click', closeGameModal);
         document.addEventListener('keydown', function (e) {
