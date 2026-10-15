@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人主页 | 郑钧元</title>
+<meta name="description" content="郑钧元 · 四川文理学院养老服务管理专业，自学前端开发与 AI 应用，现任校双创部项目孵化中心干事。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft Yahei","PingFang SC",sans-serif;}
+body{
+    background:
+        radial-gradient(circle at 15% 15%, rgba(180,210,255,0.35), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(160,190,240,0.25), transparent 35%),
+        linear-gradient(180deg, #eaf4ff 0%, #d9e8f7 100%);
+    color:#222;
+    line-height:1.75;
+    animation: fadeIn 0.8s ease;
+}
+.container{max-width:720px;margin:0 auto;padding:40px 20px;}
+
+.card{
+    background:#ffffff;
+    border-radius:16px;
+    padding:32px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+.head{text-align:center;padding-bottom:24px;border-bottom:1px solid #dde4ec;margin-bottom:24px;}
+
+.avatar{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #00529B;
+    margin-bottom:16px;
+}
+
+.head h1{color:#00529B;font-size:28px;margin-bottom:6px;}
+.head .en{color:#8aa0b8;font-size:13px;letter-spacing:1px;}
+.head p{color:#666;font-size:15px;margin-top:8px;}
+
+.section{
+    margin-bottom:24px;
+    opacity:0;
+    transform:translateY(12px);
+    animation: slideIn 0.6s ease forwards;
+}
+.section:nth-of-type(1){animation-delay:0.10s;}
+.section:nth-of-type(2){animation-delay:0.18s;}
+.section:nth-of-type(3){animation-delay:0.26s;}
+.section:nth-of-type(4){animation-delay:0.34s;}
+.section:nth-of-type(5){animation-delay:0.42s;}
+.section:nth-of-type(6){animation-delay:0.50s;}
+
+.section h2{
+    color:#004080;
+    margin-bottom:10px;
+    font-size:19px;
+    position:relative;
+    display:inline-block;
+}
+.section h2::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-4px;
+    width:0;
+    height:2px;
+    background:#00529B;
+    transition:width 0.4s ease;
+}
+.section:hover h2::after{width:100%;}
+
+.section p{color:#444;font-size:15px;}
+.section p + p{margin-top:8px;}
+
+.item{margin-bottom:16px;}
+.item:last-child{margin-bottom:0;}
+.item h3{font-size:16px;color:#222;font-weight:600;}
+.item h3 span{font-weight:400;color:#8aa0b8;font-size:13px;margin-left:8px;}
+.item p{color:#555;font-size:14.5px;margin-top:4px;}
+
+.tag{
+    display:inline-block;
+    background:#e6f0fa;
+    color:#00529B;
+    padding:3px 10px;
+    border-radius:16px;
+    font-size:13px;
+    margin:4px 3px;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.tag:hover{
+    background:#c9e1f7;
+    transform:translateY(-2px) scale(1.03);
+    box-shadow:0 4px 10px rgba(0,82,155,0.15);
+}
+
+.contact{font-size:15px;color:#444;}
+.contact a{color:#00529B;text-decoration:none;}
+.contact a:hover{text-decoration:underline;}
+.contact div{margin-bottom:4px;}
+
+footer{text-align:center;padding-top:24px;color:#999;font-size:13px;}
+
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideIn{to{opacity:1;transform:translateY(0);}}
+
+@media (max-width:600px){
+    .container{padding:20px 12px;}
+    .card{padding:22px;}
+    .head h1{font-size:24px;}
+    .avatar{width:112px;height:112px;}
+}
+@media (prefers-reduced-motion: reduce){
+    body,.section{animation:none;}
+    .section{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+
+    <div class="head">
+        <img class="avatar" src="https://juny186.github.io/personal-website/%E5%A4%B4%E5%83%8F.jpg" alt="郑钧元">
+        <h1>郑钧元</h1>
+        <div class="en">Junyuan Zheng · Freshman 2026</div>
+        <p>四川文理学院 养老服务管理 本科在读 · 校双创部项目孵化中心干事</p>
+    </div>
+
+    <div class="section">
+        <h2>关于我</h2>
+        <p>我是康养产业学院养老服务管理专业的大一学生。在学好养老服务、老年照护这些专业课的同时，自己额外学了前端开发和 AI 大模型应用，做过个人作品集官网、AI 校园智能问答系统和一个完整的 H5 网页游戏。</p>
+        <p>现在在双创部项目孵化中心当干事，平时给部门做网页、美化路演 PPT、整理赛事材料。往后想把技术用到老年场景里，做真正能帮到老人的东西。</p>
+    </div>
+
+    <div class="section">
+        <h2>教育背景</h2>
+        <div class="item">
+            <h3>四川文理学院 <span>2026.09 – 2030.06 · 四川 达州</span></h3>
+            <p>养老服务管理 · 本科在读。系统学习养老服务规划、老年照护管理、社会福利政策等专业核心课程，同时探索人工智能技术在服务管理场景中的应用。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>专业技能</h2>
+        <p>
+            <span class="tag">AI 大模型应用</span>
+            <span class="tag">Prompt 工程</span>
+            <span class="tag">智能体搭建</span>
+            <span class="tag">前端网页开发</span>
+            <span class="tag">HTML5 Canvas</span>
+            <span class="tag">GitHub Pages 部署</span>
+            <span class="tag">商业 PPT 设计</span>
+            <span class="tag">路演材料排版</span>
+            <span class="tag">项目文档梳理</span>
+            <span class="tag">成果可视化</span>
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>项目经历</h2>
+
+        <div class="item">
+            <h3>AI 校园智能问答系统 <span>2026 · 独立开发</span></h3>
+            <p>针对新生查校园信息零散、效率低的问题，基于大模型 API 做了一个轻量化问答系统，能应答校园生活、教务、宿舍、报到等高频问题。下一步打算把这套对话能力迁到康养赛道，做成老年康养智能咨询助手。</p>
+        </div>
+
+        <div class="item">
+            <h3>全量视觉 PPT 交付 <span>2026 · 持续交付</span></h3>
+            <p>长期做商业级 PPT 设计，覆盖学业汇报、双创路演、竞赛答辩等场景，累计交付 20 余份，目前直接用于双创孵化中心的项目材料与活动宣传。</p>
+        </div>
+
+        <div class="item">
+            <h3>坦克大战 · 空降突袭 <span>H5 网页游戏 · 可在线试玩</span></h3>
+            <p>用原生 HTML5 Canvas 从零写的网页游戏，没有用第三方框架，包含跳伞选落点、15 关战役、双人 PK 和 Boss 战，已上线部署可直接试玩。</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>证书</h2>
+        <p>
+            <span class="tag">阿里云 · 大模型智能体应用</span>
+            <span class="tag">阿里云 · Spring AI 应用开发</span>
+            <span class="tag">阿里云 · 大模型内容生产</span>
+            <span class="tag">阿里云 · VISION 设计（入门）</span>
+            <span class="tag">阿里云 · VISION 设计（进阶）</span>
+            <span class="tag">阿里云 · AIGC 设计基础</span>
+            <span class="tag">达摩院 · 人工智能训练师 初级</span>
+            <span class="tag">达摩院 · 人工智能训练师 高级</span>
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>联系我</h2>
+        <div class="contact">
+            <div>邮箱：<a href="mailto:Jun.y2437@outlook.com">Jun.y2437@outlook.com</a></div>
+            <div>电话：15892720570</div>
+        </div>
+    </div>
+
+    <footer>© 2026 郑钧元</footer>
+
+</div>
+</div>
+</body>
+</html>
