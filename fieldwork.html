@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>14天微型企业田野调查 · 职业认知与能力复盘 | 郑钧元</title>
+<meta name="description" content="大一暑期在成都一家新开抄手店做满14天全职服务员的田野调查复盘：从人力生态、经营病灶到职业规划的深度映射。">
+<style>
+    :root{
+        --bg:#f7f6f1; --card:#fff; --card-soft:#faf9f4;
+        --ink:#1c2b23; --ink-soft:#55665c; --ink-faint:#8c9a90;
+        --accent:#0e6b43; --accent-bright:#1fa05e; --accent-soft:rgba(14,107,67,.08);
+        --line:#e6e3d7; --gold:#b98a2f;
+        --serif:"Noto Serif SC","Songti SC","STSong","SimSun",Georgia,serif;
+        --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.9;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:860px;margin:0 auto;padding:0 1.6rem 5rem}
+
+    /* 顶栏 */
+    .top{position:sticky;top:0;z-index:20;background:rgba(247,246,241,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .top-in{max-width:860px;margin:0 auto;padding:.85rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .logo{font-family:var(--serif);font-size:1.05rem;font-weight:700;letter-spacing:.02em}
+    .logo em{color:var(--accent);font-style:normal}
+    .back{font-size:.85rem;color:var(--ink-soft);border:1px solid var(--line);padding:.35rem .85rem;border-radius:999px;background:var(--card)}
+    .back:hover{color:var(--accent);border-color:var(--accent)}
+
+    /* 封面 */
+    .cover{padding:3.4rem 0 2.2rem;border-bottom:1px solid var(--line);margin-bottom:2.4rem}
+    .kicker{display:inline-block;font-size:.76rem;letter-spacing:.16em;color:var(--accent);background:var(--accent-soft);border:1px solid rgba(14,107,67,.22);padding:.3rem .8rem;border-radius:999px;margin-bottom:1.1rem}
+    h1{font-family:var(--serif);font-size:clamp(1.7rem,4.4vw,2.5rem);line-height:1.35;letter-spacing:.01em}
+    .sub{font-family:var(--serif);font-size:1rem;color:var(--ink-soft);margin-top:.7rem}
+    .meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+    .meta span{font-size:.78rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);padding:.25rem .7rem;border-radius:999px}
+
+    /* 正文 */
+    h2{font-family:var(--serif);font-size:1.32rem;margin:2.6rem 0 1rem;padding-left:.85rem;border-left:4px solid var(--accent);line-height:1.5}
+    h3{font-size:1.02rem;margin:1.8rem 0 .6rem;color:var(--accent);font-weight:700}
+    p{font-family:var(--serif);font-size:1rem;color:var(--ink);margin:.75rem 0}
+    p.lead{font-size:1.06rem;color:var(--ink-soft)}
+    ul{margin:.7rem 0 .7rem .1rem;list-style:none}
+    li{font-family:var(--serif);font-size:.98rem;color:var(--ink);padding:.42rem 0 .42rem 1.35rem;position:relative}
+    li::before{content:"·";position:absolute;left:.4rem;color:var(--accent-bright);font-weight:700}
+    li b{color:var(--ink);font-family:var(--sans);font-size:.94rem}
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.35rem 1.5rem;margin:1.2rem 0;box-shadow:0 4px 14px rgba(28,43,35,.06)}
+    .card.soft{background:var(--card-soft)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.9rem;margin:1.1rem 0}
+    .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem}
+    .stat b{display:block;font-family:var(--serif);font-size:1.35rem;color:var(--accent)}
+    .stat span{font-size:.82rem;color:var(--ink-soft)}
+    .quote{font-family:var(--serif);font-size:1.06rem;color:var(--accent-deep,#0a5033);background:var(--accent-soft);border-left:3px solid var(--accent);padding:1rem 1.2rem;border-radius:0 12px 12px 0;margin:1.3rem 0}
+    mark{background:rgba(185,138,47,.16);color:inherit;padding:.05em .25em;border-radius:4px}
+    strong{color:var(--ink)}
+    .tag{display:inline-block;font-size:.74rem;color:var(--ink-soft);background:var(--card-soft);border:1px solid var(--line);padding:.22rem .62rem;border-radius:999px;margin:.15rem .25rem .15rem 0}
+
+    footer{margin-top:3.2rem;padding-top:1.6rem;border-top:1px solid var(--line);font-size:.85rem;color:var(--ink-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem}
+    @media(max-width:640px){.cover{padding:2.4rem 0 1.6rem}p,li{font-size:.96rem}}
+</style>
+</head>
+<body>
+
+<header class="top">
+    <div class="top-in">
+        <a class="logo" href="index.html">郑钧元 <em>JunYuan</em></a>
+        <a class="back" href="index.html#projects">← 返回个人主页</a>
+    </div>
+</header>
+
+<div class="wrap">
+
+    <div class="cover">
+        <span class="kicker">田野调查 · 职业复盘</span>
+        <h1>从微观餐饮生态看现代服务业管理</h1>
+        <p class="sub">——基于 14 天微型企业田野调查的职业认知与能力复盘</p>
+        <div class="meta">
+            <span>郑钧元 · 养老服务管理 2026 级</span>
+            <span>2026 年暑期 · 成都武侯区</span>
+            <span>14 天全职服务员</span>
+            <span>约 3,400 字</span>
+        </div>
+    </div>
+
+    <p class="lead">这不是一份兼职总结。大一暑期，我进了一家刚开业的抄手店，做了 14 天全职服务员，把自己放进最底层的劳动里，去看一家微型企业到底怎么运转、为什么转不动。它后来成了我选职业的第二个锚点。</p>
+
+    <h2>一、田野调查主体与微观商业画像</h2>
+    <p>为了建立对真实商业生态与现代服务业底层逻辑的感知，我在成都市武侯区新会展中心附近一家<strong>新开业快餐店（抄手店）</strong>，进行了为期 14 天的全职服务员工作。</p>
+    <div class="grid">
+        <div class="stat"><b>11 小时</b><span>日营业时长（9:00–20:00，无离店时间）</span></div>
+        <div class="stat"><b>1800–4000 元</b><span>单日销售额，核心区间 2000–3000 元</span></div>
+        <div class="stat"><b>夫妻店</b><span>典型小生产者，租用店面，无外卖，主攻堂食</span></div>
+        <div class="stat"><b>全链路</b><span>前厅接待与点餐指导、跑堂调度、清洁、后厨洗碗辅助</span></div>
+    </div>
+    <p>客群是高度流动的周边小区住户、上班族、展会参展人员与酒店住客——<strong>人来了就走，服务却必须稳定</strong>。</p>
+
+    <h2>二、核心切片：人力生态与经营主体群像</h2>
+    <p>这 14 天不仅是一次体力劳动，更是一场生动的社会学与管理学田野观察。我记录了微型企业在人力资源调配上的真实窘境。</p>
+
+    <h3>1. 决策层画像</h3>
+    <ul>
+        <li><b>40 岁浙江籍男店主</b>：早年多次跨行创业，具试错型与强控制欲特征。</li>
+        <li><b>28 岁达州籍老板娘</b>：曾从事化妆品销售，不喜餐饮但曾无薪打杂学习一年。</li>
+    </ul>
+
+    <h3>2. 员工流动切片</h3>
+    <ul>
+        <li><b>临时兼职（50 岁本地女）</b>：有接待能力，但缺乏职业边界感（碎嘴激怒顾客）被辞退。</li>
+        <li><b>培训员工（雅安中年妇女）</b>：劳动态度积极，但受限于<mark>数字鸿沟</mark>——不懂复制粘贴、不会存电话，因无法适应点餐系统被无奈辞退。</li>
+        <li><b>培训员工（凉山州 22 岁专科女生）</b>：初入成都，心思单纯但缺乏职业认同感与灵活度。</li>
+    </ul>
+
+    <div class="quote">洞察：微型服务业在「成本控制」与「服务质效」之间存在巨大撕裂。雇主渴望即插即用的熟练工，而基层劳动力往往在职业素养、数字化适应力与情绪管理上存在短板。</div>
+
+    <p>那位雅安阿姨让我记到现在。她不懒、不滑，只是学不会那套点餐系统。工具没有降低对人的要求，反而把人筛掉了。</p>
+
+    <h2>三、经营病灶诊断：基于一线操作的 10 条商业观察</h2>
+    <p>在跑堂与打扫的间隙，我以局外人的冷静视角，系统梳理了该店的运营痛点：</p>
+    <div class="card soft">
+        <ul>
+            <li><b>成本与人力错位：</b>过度压榨单人效能以缩减成本，导致工作压力变形，员工流失率高。</li>
+            <li><b>管理者闭环缺失：</b>面对顾客建议（如制冷效果极差），店主要么刚愎自用，要么笼统接受而无系统整理与复盘。</li>
+            <li><b>管理视线短浅：</b>常以「前期未捋顺」为借口搁置问题，但日常工作高度重复，弹性极低，「捋顺之日」遥遥无期。</li>
+            <li><b>组织内耗：</b>夫妻档权责界限不清，因经营问题常在家中产生口角，潜藏管理危机。</li>
+            <li><b>供应链与产品结构缺陷：</b>菜品单一，员工餐极为简陋，导致内部离心力强。</li>
+            <li><b>战略保守：</b>面对高昂房租、隔壁新增面馆的竞争与客流接近饱和的现状，因担忧产能不足始终不敢开通外卖，错失增量。</li>
+        </ul>
+    </div>
+
+    <h2>四、从实践到认知：对职业规划的深度映射</h2>
+    <p>这 14 天最大的价值，不在于我获得了多少薪酬，而在于我通过<strong>底层劳动</strong>验证了自身的长短板，并确立了未来的职业锚点。</p>
+
+    <h3>1. 自我能力的客观验证</h3>
+    <ul>
+        <li><b>优势：</b>面对形形色色的顾客，展现出较强的机变能力与情绪稳定性，出错较少；因认知到「顾客高度流动」的本质，做到不卑不亢，多次获得顾客当面认可。</li>
+        <li><b>短板与觉醒：</b>我发现自己极度渴求独立思考的时间。当工作变为高度重复的体力消耗时，产生了强烈的焦虑感。这让我彻底明晰——<mark>我的职业定位绝不能停留在执行层，必须向上突破至「系统设计」与「运营统筹」</mark>。</li>
+    </ul>
+
+    <h3>2. 对康养专业的深度推演</h3>
+    <div class="quote">快餐店与社区养老驿站 / 康养机构的底层逻辑高度相似：客群相对固定、服务极度重人力、利润率受制于精细化管理。</div>
+    <p>如果未来我运营一家社区养老机构，我绝不能让机构陷入「<strong>压榨员工 — 员工流失 — 服务质量下降 — 客源萎缩</strong>」的死循环。</p>
+
+    <h2>五、职业目标的落地与未来行动</h2>
+    <p>基于此次田野调查，我将原本宏大的「经济独立与阶层跃迁」目标，具象化为「<strong>成为现代服务业（康养领域）的高效管理者</strong>」。在接下来的大学生涯中，我将以此为起点：</p>
+    <div class="card">
+        <ul>
+            <li><b>理论武装：</b>利用《管理学》等专业课程，重点攻克「组织行为学」与「人力资源激励」，探究如何降低基层服务人员的流失率。</li>
+            <li><b>工具赋能：</b>结合目前在胡瑞思老师课题组参与的「AI 与大模型」项目，思考如何用数字化工具（智能排班、AI 客服）解决微型企业「数字鸿沟」与「成本压榨」的痛点。</li>
+            <li><b>成果转化：</b>将此次发现的「微型服务业管理病灶」，作为大创项目或双创竞赛的课题基础，完成从「现象观察者」向「问题解决者」的跨越。</li>
+        </ul>
+    </div>
+
+    <h2>它和我的目标岗位有什么关系</h2>
+    <p>我的目标岗位是<strong>康养机构运营数据分析师</strong>。这条复盘给我的不是经历，是两条判断标准：</p>
+    <ul>
+        <li><b>工具该降低对人的要求，而不是挑人。</b>养老机构一样重人力、一样靠一线执行，系统上线前先想清楚：它会不会把不会用的人挤出去。</li>
+        <li><b>数据背后是具体的人。</b>「员工流失率」落到纸面上是一个百分比，落到店里是那位雅安阿姨收拾东西走人的那天下午。</li>
+    </ul>
+    <p style="margin-top:1.2rem">
+        <span class="tag">田野调查</span><span class="tag">服务业管理</span><span class="tag">数字鸿沟</span><span class="tag">人力成本</span><span class="tag">康养运营</span><span class="tag">职业复盘</span>
+    </p>
+
+    <footer>
+        <span>郑钧元 · 四川文理学院 康养产业学院 · 养老服务管理 2026 级 1 班</span>
+        <span><a href="index.html#projects" style="color:var(--accent)">← 返回个人主页</a></span>
+    </footer>
+</div>
+
+</body>
+</html>
